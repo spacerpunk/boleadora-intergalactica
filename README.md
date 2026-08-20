@@ -1,56 +1,72 @@
 # Boleadora Intergaláctica
 
-Portfolio web de un equipo de postproductores y creativos. Sitio estático,
-sin build step: HTML + CSS + JavaScript vanilla.
+Portfolio web de un equipo de postproductores y creativos.
+**React + Vite**, con perfiles renderizados desde un único archivo de datos.
+
+## Requisitos
+
+- Node.js 18+ (probado con Node 24)
+
+## Comandos
+
+```bash
+npm install     # instalar dependencias
+npm run dev     # servidor de desarrollo (http://localhost:5173)
+npm run build   # build de producción -> dist/
+npm run preview # previsualizar el build
+```
 
 ## Estructura
 
 ```
-index.html            Home — hero del estudio + grilla del equipo
-profile.html          Plantilla de perfil (lee ?member=<id>)
-portfolio.html        Portfolio por integrante (?member=<id>) — WIP
-styles.css            Estilos
-script.js             Reveal on scroll (RevealOnScroll + initReveal)
-data/
-  team.js             ⭐ Datos del equipo — editá acá los perfiles
-assets/
-  _svg-lib.js         Artwork SVG (logo, íconos sociales, íconos de tools)
-  components.js       Navbar + footer compartidos (buildNavbar/buildFooter)
-  home.js             Render del home
-  profile.js          Render de un perfil
-  portfolio.js        Render del portfolio
-imgs/                 Retratos e imágenes de proyectos
+index.html              Entry point de Vite
+vite.config.js
+public/
+  imgs/                 Retratos e imágenes (servidas en /imgs/...)
+src/
+  main.jsx              Bootstrap de React + Router
+  App.jsx               Rutas
+  index.css             Estilos (migrados del sitio original)
+  config.js             STUDIO: nombre, copyright, redes del estudio
+  data/
+    team.js             ⭐ Datos del equipo — editá acá los perfiles
+  assets/
+    svg.js              Artwork SVG (logo, íconos sociales, íconos de tools)
+  hooks/
+    useReveal.js        Reveal-on-scroll (IntersectionObserver)
+  components/
+    Navbar.jsx  Footer.jsx  TeamCard.jsx  ToolBubble.jsx  RawSvg.jsx
+  pages/
+    Home.jsx    Profile.jsx  Portfolio.jsx
+legacy/                 Versión estática original (solo referencia)
 ```
 
-## Integrantes
+## Rutas
 
-Benja, Nico, Palo y Ceci. Cada uno tiene su perfil en
-`profile.html?member=<id>` (`benja`, `nico`, `palo`, `ceci`).
+| Ruta                 | Página                              |
+| -------------------- | ----------------------------------- |
+| `/`                  | Home — hero + grilla del equipo      |
+| `/profile/:id`       | Perfil (`benja`, `nico`, `palo`, `ceci`) |
+| `/portfolio/:id`     | Portfolio del integrante (WIP)       |
 
 ## Cómo editar
 
 - **Contenido de un perfil** (bio, trayectoria, estudios, herramientas,
   idiomas, redes, retrato): editá el objeto correspondiente en
-  [`data/team.js`](data/team.js). Todo el HTML se genera desde ahí.
-- **Retratos**: los de Nico, Palo y Ceci son placeholders SVG en `imgs/`.
-  Reemplazalos por fotos reales y actualizá la ruta `portrait` en `team.js`.
-- **Íconos de herramientas**: si una tool no tiene ícono se muestra como
-  pill de texto. Para agregar un ícono, sumalo a `TOOL_ICONS` en
-  `assets/_svg-lib.js` con el mismo nombre que usás en `team.js`.
-- **Redes del estudio / contacto**: `STUDIO` en `assets/components.js`.
-
-## Correr localmente
-
-Al usar `fetch`-free rendering no hace falta servidor, pero por comodidad:
-
-```bash
-python -m http.server 8000
-```
-
-Y abrí http://localhost:8000
+  [`src/data/team.js`](src/data/team.js). Toda la UI se genera desde ahí.
+- **Retratos**: los de Nico, Palo y Ceci son placeholders SVG en
+  `public/imgs/`. Reemplazalos por fotos y actualizá `portrait` en `team.js`
+  (la ruta empieza con `/imgs/...`).
+- **Íconos de herramientas**: si una tool no tiene ícono, se muestra como
+  pill de texto. Para agregar uno, sumalo a `TOOL_ICONS` en
+  [`src/assets/svg.js`](src/assets/svg.js) con el mismo nombre que usás en
+  `team.js`.
+- **Datos del estudio / contacto**: [`src/config.js`](src/config.js).
 
 ## Notas
 
-- El contenido de Benja proviene del portfolio original. Los perfiles de
-  Nico, Palo y Ceci son textos de arranque pensados para personalizar.
+- El contenido de Benja proviene del portfolio original. Nico, Palo y Ceci
+  son textos de arranque para personalizar.
 - El portfolio por integrante está en construcción (grilla placeholder).
+- La versión estática anterior quedó archivada en `legacy/` (también está en
+  el historial de git).
