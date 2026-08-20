@@ -3,9 +3,10 @@ export const STUDIO = {
   nombre: "Boleadora Intergaláctica",
   copyright: "Boleadora Intergaláctica®",
   social: {
-    behance: "#",
-    linkedin: "#",
-    dribbble: "#",
+    instagram: "https://instagram.com/",
+    behance: "https://www.behance.net/",
+    linkedin: "https://www.linkedin.com/",
+    github: "https://github.com/",
     mail: "mailto:hola@boleadora.studio",
   },
 };

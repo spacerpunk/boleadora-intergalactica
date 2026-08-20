@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useParams, Navigate } from "react-router-dom";
+import { useParams, Navigate, Link } from "react-router-dom";
 import { getMember } from "../data/team.js";
 import { STUDIO } from "../config.js";
 import Navbar from "../components/Navbar.jsx";
@@ -26,7 +26,7 @@ export default function Profile() {
       <Navbar
         nav={[
           { label: "Equipo", href: "/#equipo" },
-          { label: "Portfolio", to: `/portfolio/${member.id}`, muted: true },
+          { label: "Portfolio", to: "/portfolio", muted: true },
         ]}
         social={member.social}
       />
@@ -51,6 +51,12 @@ export default function Profile() {
                 </span>
               ))}
             </p>
+            <Link
+              className="contact-btn reveal"
+              to={`/portfolio/${member.id}`}
+            >
+              Ver portfolio de {member.nombre} →
+            </Link>
           </div>
           <div id="main__hero" className="reveal">
             <img

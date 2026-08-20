@@ -8,6 +8,7 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/profile/:id" element={<Profile />} />
+      <Route path="/portfolio" element={<Portfolio />} />
       <Route path="/portfolio/:id" element={<Portfolio />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

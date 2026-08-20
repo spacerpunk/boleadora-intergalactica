@@ -14,9 +14,10 @@ export const TEAM = [
     portrait: "/imgs/benja-portrait.png",
     email: "nagmengarcia@gmail.com",
     social: {
-      behance: "#",
-      linkedin: "#",
-      dribbble: "#",
+      instagram: "https://instagram.com/",
+      behance: "https://www.behance.net/",
+      linkedin: "https://www.linkedin.com/",
+      github: "https://github.com/",
       mail: "mailto:nagmengarcia@gmail.com",
     },
     bio: [
@@ -68,9 +69,10 @@ export const TEAM = [
     portrait: "/imgs/nico-portrait.svg",
     email: "hola@boleadora.studio",
     social: {
-      behance: "#",
-      linkedin: "#",
-      dribbble: "#",
+      instagram: "https://instagram.com/",
+      behance: "https://www.behance.net/",
+      linkedin: "https://www.linkedin.com/",
+      github: "https://github.com/",
       mail: "mailto:hola@boleadora.studio",
     },
     bio: [
@@ -113,9 +115,10 @@ export const TEAM = [
     portrait: "/imgs/palo-portrait.svg",
     email: "hola@boleadora.studio",
     social: {
-      behance: "#",
-      linkedin: "#",
-      dribbble: "#",
+      instagram: "https://instagram.com/",
+      behance: "https://www.behance.net/",
+      linkedin: "https://www.linkedin.com/",
+      github: "https://github.com/",
       mail: "mailto:hola@boleadora.studio",
     },
     bio: [
@@ -158,9 +161,10 @@ export const TEAM = [
     portrait: "/imgs/ceci-portrait.svg",
     email: "hola@boleadora.studio",
     social: {
-      behance: "#",
-      linkedin: "#",
-      dribbble: "#",
+      instagram: "https://instagram.com/",
+      behance: "https://www.behance.net/",
+      linkedin: "https://www.linkedin.com/",
+      github: "https://github.com/",
       mail: "mailto:hola@boleadora.studio",
     },
     bio: [

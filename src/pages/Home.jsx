@@ -20,6 +20,7 @@ export default function Home() {
       <Navbar
         nav={[
           { label: "Equipo", href: "#equipo" },
+          { label: "Portfolio", to: "/portfolio" },
           { label: "Contacto", href: "#contacto", muted: true },
         ]}
         social={STUDIO.social}
