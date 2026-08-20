@@ -1,0 +1,38 @@
+[
+  {
+    "id": "fud",
+    "titulo": "Füd",
+    "descripcion": "Creación y diseño de App mobile. Füd es un proyecto realizado en la cursada de UX/UI de CoderHouse. El mismo consistió en crear un mínimo producto viable para celular a través de la metodología Design Thinking y utilización de patrones comunes de UI.",
+    "thumbnail": "img/fud-thumb.png",
+    "thumbnailAlt": "Mockup de app Fud",
+    "heroImage": "img/fud-hero.png",
+    "heroImageAlt": "Vista principal de la app Fud",
+    "tipo": "UX/UI",
+    "url": "fud",
+    "cta1": "Ver proyecto completo"
+  },
+  {
+    "id": "santiTasso",
+    "titulo": "Website de Santiago Tasso",
+    "descripcion": "Diseño de Website responsive. Füd es un proyecto realizado en la cursada de UX/UI de CoderHouse. El mismo consistió en crear un mínimo producto viable para celular a través de la metodología Design Thinking y utilización de patrones comunes de UI.",
+    "thumbnail": "img/fud-thumb.png",
+    "thumbnailAlt": "Imagen miniatura de proyecto de Website de Santiago",
+    "heroImage": "img/fud-hero.png",
+    "heroImageAlt": "Vista principal de Website de Santiago Tasso",
+    "tipo": "Website Design",
+    "url": "fud",
+    "cta1": "Ver website"
+  },
+  {
+    "id": "Octopus",
+    "titulo": "Website de Santiago Tasso",
+    "descripcion": "Diseño de Website responsive. Füd es un proyecto realizado en la cursada de UX/UI de CoderHouse. El mismo consistió en crear un mínimo producto viable para celular a través de la metodología Design Thinking y utilización de patrones comunes de UI.",
+    "thumbnail": "img/fud-thumb.png",
+    "thumbnailAlt": "Imagen miniatura de proyecto de Website de Santiago",
+    "heroImage": "img/fud-hero.png",
+    "heroImageAlt": "Vista principal de Website de Santiago Tasso",
+    "tipo": "Website Design",
+    "url": "fud",
+    "cta1": "Ver website"
+  }
+]
