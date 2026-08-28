@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { LOGO_SVG, SOCIAL_ICONS } from "../assets/svg.js";
 import { STUDIO } from "../config.js";
 import RawSvg from "./RawSvg.jsx";
+import ThemeToggle from "./ThemeToggle.jsx";
 
 /**
  * Shared navbar.
@@ -34,6 +35,7 @@ export default function Navbar({ nav, social = STUDIO.social }) {
       </Link>
 
       <div id="navbar__rrss">
+        <ThemeToggle />
         {Object.keys(SOCIAL_ICONS).map((key) => {
           const href = social[key] || "#";
           const external = href.startsWith("http");

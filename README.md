@@ -1,4 +1,4 @@
-# Boleadora Intergaláctica
+# Ruido de Mate
 
 Portfolio web de un equipo de postproductores y creativos.
 **React + Vite**, con perfiles renderizados desde un único archivo de datos.

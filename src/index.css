@@ -885,3 +885,161 @@ footer {
     line-height: 1.8rem;
   }
 }
+
+/* ============================================================
+   THEMING — dark mode
+   Light theme is the default (rules above). Dark overrides are
+   scoped under [data-theme="dark"] so they never affect light.
+   ============================================================ */
+
+:root {
+  color-scheme: light;
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+body {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* --- Base --- */
+[data-theme="dark"] body {
+  background-color: #0f1012;
+  color: #ededed;
+}
+[data-theme="dark"] li {
+  color: #b7b7b7;
+}
+[data-theme="dark"] li span {
+  color: #7c7c7c;
+}
+[data-theme="dark"] .paragraph {
+  color: #b7b7b7;
+}
+[data-theme="dark"] #trayectoria-laboral ul,
+[data-theme="dark"] #idioma ul {
+  color: #b7b7b7;
+}
+
+/* --- Navbar --- */
+[data-theme="dark"] #navbar {
+  background-color: #0f1012;
+}
+[data-theme="dark"] #navbar__navigation li a:hover {
+  color: #ffffff;
+}
+[data-theme="dark"] #navbar__navigation li.muted a {
+  color: #8a8a8a;
+}
+[data-theme="dark"] .navbar__rrss__icon {
+  background-color: transparent;
+}
+
+/* Recolor inline SVG icons for dark (CSS overrides the fill/stroke attrs) */
+[data-theme="dark"] #navbar__rrss svg path,
+[data-theme="dark"] #navbar__rrss svg rect,
+[data-theme="dark"] #navbar__rrss svg circle,
+[data-theme="dark"] #navbar__rrss svg line,
+[data-theme="dark"] .tool-bubble svg path,
+[data-theme="dark"] .tool-bubble svg rect,
+[data-theme="dark"] .tool-bubble svg circle,
+[data-theme="dark"] .tool-bubble svg line {
+  stroke: #ededed;
+}
+[data-theme="dark"] #footer__logo svg path {
+  fill: #ededed;
+}
+[data-theme="dark"] #navbar__logo svg path[fill="#222222"] {
+  fill: #ededed;
+}
+[data-theme="dark"] #navbar__logo svg path[fill="#ffffff"],
+[data-theme="dark"] .logo__animated {
+  fill: #0f1012;
+}
+[data-theme="dark"] #navbar__logo:hover .logo__animated {
+  fill: #f1c8c8;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+/* --- Tools --- */
+[data-theme="dark"] .tool-bubble {
+  border-color: #3a3b40;
+}
+
+/* --- Home --- */
+[data-theme="dark"] .team-card {
+  background-color: #17181b;
+  border-color: #2a2b2f;
+}
+[data-theme="dark"] .team-card:hover {
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+}
+[data-theme="dark"] .team-card__role {
+  color: #b7b7b7;
+}
+[data-theme="dark"] .team-card__cta {
+  color: #ededed;
+}
+[data-theme="dark"] .contact-btn {
+  border-color: #ededed;
+  color: #ededed;
+}
+[data-theme="dark"] .contact-btn:hover {
+  background-color: #ededed;
+  color: #0f1012;
+}
+
+/* --- Footer --- */
+[data-theme="dark"] .footer__separator {
+  background-color: #2a2b2f;
+}
+[data-theme="dark"] .footer__section p {
+  color: #9a9a9a;
+}
+
+/* --- Portfolio cards --- */
+[data-theme="dark"] .project-card {
+  background-color: #17181b;
+  border-color: #2a2b2f;
+}
+[data-theme="dark"] .project-card:hover {
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+}
+[data-theme="dark"] .project-card__resumen {
+  color: #b7b7b7;
+}
+[data-theme="dark"] .project-card:focus-visible {
+  outline-color: #ededed;
+}
+
+/* --- Modal --- */
+[data-theme="dark"] .modal {
+  background-color: #17181b;
+}
+[data-theme="dark"] .modal__meta {
+  color: #9a9a9a;
+}
+[data-theme="dark"] .modal__text {
+  color: #c2c2c2;
+}
+[data-theme="dark"] .modal__tag {
+  border-color: #2a2b2f;
+  color: #b7b7b7;
+}
+[data-theme="dark"] .modal__close {
+  background: rgba(30, 30, 34, 0.9);
+  color: #ededed;
+}
+[data-theme="dark"] .modal__close:hover {
+  background: #26272b;
+}

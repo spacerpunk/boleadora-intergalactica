@@ -1,9 +1,9 @@
 {
-  "name": "boleadora-intergalactica",
+  "name": "ruido-de-mate",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Portfolio web de Boleadora Intergaláctica — equipo de postproducción y creativos",
+  "description": "Portfolio web de Ruido de Mate — equipo de postproducción y creativos",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
