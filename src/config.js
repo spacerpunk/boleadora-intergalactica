@@ -3,10 +3,9 @@ export const STUDIO = {
   nombre: "Ruido de Mate",
   copyright: "Ruido de Mate®",
   social: {
-    instagram: "https://instagram.com/",
-    behance: "https://www.behance.net/",
-    linkedin: "https://www.linkedin.com/",
-    github: "https://github.com/",
-    mail: "mailto:hola@ruidodemate.studio",
+    instagram: "https://www.instagram.com/nico.reque/",
+    behance: "https://www.behance.net/Bennja",
+    github: "https://github.com/spacerpunk",
+    mail: "mailto:requena.nicolas@gmail.com",
   },
 };

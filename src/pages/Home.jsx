@@ -4,6 +4,7 @@ import { STUDIO } from "../config.js";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
 import TeamCard from "../components/TeamCard.jsx";
+import FeaturedWorks from "../components/FeaturedWorks.jsx";
 import { useReveal } from "../hooks/useReveal.js";
 
 export default function Home() {
@@ -19,9 +20,9 @@ export default function Home() {
     <>
       <Navbar
         nav={[
+          { label: "Trabajos", href: "#trabajos" },
           { label: "Equipo", href: "#equipo" },
-          { label: "Portfolio", to: "/portfolio" },
-          { label: "Contacto", href: "#contacto", muted: true },
+          { label: "Portfolio", to: "/portfolio", muted: true },
         ]}
         social={STUDIO.social}
       />
@@ -40,6 +41,8 @@ export default function Home() {
             </p>
           </div>
         </header>
+
+        <FeaturedWorks />
 
         <section id="equipo" className="section">
           <h2 className="reveal">El equipo</h2>

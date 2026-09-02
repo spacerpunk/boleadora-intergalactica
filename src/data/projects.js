@@ -203,3 +203,12 @@ export const PROJECTS = [
 export function getProjectsByOwner(id) {
   return PROJECTS.filter((p) => p.owner === id);
 }
+
+// Curated selection shown full-width on the home page.
+const FEATURED_IDS = ["fud", "ceci-exteriores", "tienda10", "ceci-shortfilm"];
+
+export function getFeatured() {
+  return FEATURED_IDS.map((id) => PROJECTS.find((p) => p.id === id)).filter(
+    Boolean
+  );
+}

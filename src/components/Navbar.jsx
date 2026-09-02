@@ -36,7 +36,9 @@ export default function Navbar({ nav, social = STUDIO.social }) {
 
       <div id="navbar__rrss">
         <ThemeToggle />
-        {Object.keys(SOCIAL_ICONS).map((key) => {
+        {Object.keys(social)
+          .filter((key) => SOCIAL_ICONS[key])
+          .map((key) => {
           const href = social[key] || "#";
           const external = href.startsWith("http");
           return (
