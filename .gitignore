@@ -13,6 +13,3 @@ Thumbs.db
 # logs
 npm-debug.log*
 *.local
-
-# large raw media dump (keep local, not in git)
-assets/
