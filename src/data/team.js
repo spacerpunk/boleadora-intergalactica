@@ -62,10 +62,10 @@ export const TEAM = [
     nombre: "Nico",
     nombreCompleto: "Nicolás Requena",
     saludo: "Hola, soy Nico",
-    rol: "Editor / Postproductor Audiovisual",
-    tagline: "Edición & Motion",
+    rol: "Creative Technologist / Postproductor Audiovisual",
+    tagline: "Musica, Tech & Video",
     accent: "#bcd4f1",
-    portrait: "/imgs/nico-portrait.svg",
+    portrait: "/imgs/nico-portrait.jpg",
     email: "hola@ruidodemate.studio",
     social: {
       instagram: "https://www.instagram.com/nico.reque/",
@@ -74,32 +74,34 @@ export const TEAM = [
       mail: "mailto:requena.nicolas@gmail.com",
     },
     bio: [
-      "Editor y postproductor audiovisual con foco en montaje, ritmo y narrativa. Trabajo piezas para campañas, redes y contenido de marca de principio a fin.",
-      "Me muevo cómodo entre la edición, el motion graphics y la corrección de color, cuidando que cada pieza tenga una identidad propia.",
+      "Compositor, Ingeniero en Sonido y Productor Musical que se enseño a si mismo a programar, ama el Cine y los VFX.",
+      "Empece en el mundo del sonido para cine pero mi camino me llevo a aprender 3D, VFX y Edicion de video y hoy llevo más ahi que en el mundo del audio.",
       "¿Tenés un proyecto en mente? Escribíme a hola@ruidodemate.studio.",
     ],
     trayectoria: [
-      { puesto: "Editor / Postproductor Sr, Ruido de Mate.", periodo: "(2023 - HOY)" },
-      { puesto: "Editor de Contenido, Freelance.", periodo: "(2020 - 2023)" },
-      { puesto: "Motion Designer Ssr, Estudio Audiovisual.", periodo: "(2019 - 2021)" },
-      { puesto: "Asistente de Edición, Productora.", periodo: "(2018 - 2019)" },
+      { puesto: "Creative Technologist & AI Engineer @ .monks", periodo: "(2023 - HOY)" },
+      { puesto: "3D Generalist, Video Editor, VFX Artist @ Tungsteno Films", periodo: "(2019 - HOY)" },
+      { puesto: "Director de Audio & Compositor", periodo: "(2018 - 2022)" },
+      { puesto: "Sonido Directo, Edicion de Dialogo", periodo: "(2016 - 2018)" },
+      { puesto: "Compositor, Musica para Publicidad y Cortometrajes", periodo: "(2012 - 2016)" }
     ],
     estudios: {
       izquierda: [
-        { texto: "Realización Integral de Cine y TV.", periodo: "(2018)" },
-        { texto: "Edición y Montaje Audiovisual.", periodo: "(2019)" },
+        { texto: "Produccion Musical", periodo: "(2012 - 2015)" },
+        { texto: "Ingenieria en Sonido", periodo: "(2015)" },
+        { texto: "Diseño Industrial", periodo: "(2026)" },
       ],
       derecha: [
-        { texto: "Color Grading en DaVinci Resolve.", periodo: "(2022)" },
-        { texto: "Motion Graphics, After Effects.", periodo: "(2021)" },
-        { texto: "Narrativa Audiovisual, Taller.", periodo: "(2020)" },
+        { texto: "Game Audio", periodo: "(2019)" },
+        { texto: "Unreal Engine Partnership", periodo: "(2022)" },
+        { texto: "C++ Programacion para Video Juegos", periodo: "(2022)" },
+        { texto: "NVIDIA NIMS Training & Agents", periodo: "(2026)" }
       ],
     },
     herramientas: [
-      "Premiere", "After Effects", "DaVinci Resolve", "Photoshop",
-      "Audition", "Media Encoder",
+      "Pro Tools", "Blender", "Unreal Engine", "After Effects", "DaVinci Resolve", "Photoshop", "Cubase", "MaxMSP","Premiere", "C++", "JS", "Tidal Cycles", "Agentic AI"
     ],
-    idiomas: ["Español nativo", "Inglés intermedio"],
+    idiomas: ["Español nativo", "Inglés avanzado"],
   },
 
   {
@@ -155,7 +157,7 @@ export const TEAM = [
     rol: "Diseño de Sonido & Foley",
     tagline: "Sonido & Foley",
     accent: "#d8c8f1",
-    portrait: "/imgs/ceci-portrait.svg",
+    portrait: "/imgs/ceci-portrait.jpg",
     email: "hola@ruidodemate.studio",
     social: {
       instagram: "https://www.instagram.com/nico.reque/",
