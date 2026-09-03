@@ -100,6 +100,10 @@ export const TEAM = [
       "Pro Tools", "Blender", "Unreal Engine", "After Effects", "DaVinci Resolve", "Photoshop", "Cubase", "MaxMSP","Premiere", "C++", "JS", "Tidal Cycles", "Agentic AI"
     ],
     idiomas: ["Español nativo", "Inglés avanzado"],
+    portfolioLinks: [
+      { label: "Full Portfolio", url: "https://spacerpunk.github.io/home" },
+      { label: "Música", url: "https://spacerpunk.bandcamp.com/" },
+    ],
   },
 
   {
@@ -107,7 +111,7 @@ export const TEAM = [
     nombre: "Palo",
     nombreCompleto: "Paloma Mollo",
     saludo: "Hola, soy Palo",
-    rol: "Diseñadora de Imagen y Sonido / Fotógrafa",
+    rol: "Diseñadora de Imagen y Sonido",
     tagline: "Postproducción & Motion Graphics",
     accent: "#f1c8c8",
     portrait: "/imgs/palo-portrait.jpg",
@@ -130,15 +134,13 @@ export const TEAM = [
     ],
     estudios: {
       izquierda: [
-        { texto: "Diseño de Imagen y Sonido, Universidad de Buenos Aires.", periodo: "(2017 - 2025)" },
-        { texto: "Diseño Gráfico, Universidad de Buenos Aires.", periodo: "(2021 - ACTUALIDAD)" },
-        { texto: "Curso de Fotografía Profesional, Instituto IDES.", periodo: "(2015 - 2016)" },
-        { texto: "Bachillerato en Ciencias Sociales.", periodo: "(2016)" },
+        { texto: "Diseño de Imagen y Sonido, UBA", periodo: "(2017 - 2025)" },
+        { texto: "Diseño Gráfico, UBA", periodo: "(2021 - ACTUALIDAD)" },
+        { texto: "Curso de Fotografía Profesional, Instituto IDES", periodo: "(2015 - 2016)" },
+        { texto: "Bachillerato en Ciencias Sociales", periodo: "(2016)" },
       ],
       derecha: [
-        { texto: "Ayudante de cátedra, Animación 3D — Cátedra ex-Malamud, FADU, UBA.", periodo: "(2025 - ACTUALIDAD)" },
-        { texto: "Curso de Fotografía Profesional, Instituto IDES — Certificación UNLaM.", periodo: "(2015 - 2016)" },
-      ],
+        { texto: "Ayudante de cátedra, Animación 3D — Cátedra ex-Malamud, FADU, UBA.", periodo: "(2025 - ACTUALIDAD)" }      ],
     },
     herramientas: [
       "After Effects", "Premiere", "Photoshop", "Illustrator", "Blender 3D",
@@ -182,45 +184,54 @@ export const TEAM = [
   },
 
   {
-    id: "mati",
-    nombre: "Mati",
-    nombreCompleto: "Matias Crochi",
-    saludo: "Hola, soy Matias",
-    rol: "Editor / Realizador Audiovisual",
-    tagline: "Edición & Realización",
-    accent: "#c8e6d0",
+    id: "matias",
+    nombre: "Matías",
+    nombreCompleto: "Matías Crochi",
+    saludo: "Hola, soy Matías",
+    rol: "Editor de Video / Motion Grapher y Post-productor",
+    tagline: "Post-producción & Motion",
+    accent: "#c9b8f1",
     portrait: "/imgs/matias-portrait.jpg",
-    email: "hola@ruidodemate.studio",
+    email: "matiascrochi@gmail.com",
     social: {
-      instagram: "https://www.instagram.com/nico.reque/",
-      github: "https://github.com/spacerpunk",
-      mail: "mailto:requena.nicolas@gmail.com",
+      portfolio: "https://matiascrochi.myportfolio.com/",
+      instagram: "https://www.instagram.com/matiascrochi/",
+      linkedin: "https://www.linkedin.com/in/matiascrochi/",
+      mail: "mailto:matiascrochi@gmail.com",
     },
     bio: [
-      "Editor y realizador audiovisual. Trabajo piezas de principio a fin: montaje, ritmo y postproducción para publicidad, videoclips y contenido de marca.",
-      "Me gusta encontrar la mejor versión de cada historia en la sala de edición.",
-      "Podés ver mi trabajo completo en mi portfolio.",
+      "Nací en 1995 en Buenos Aires y hace más de 7 años que vivo de la post-producción audiovisual. Me muevo cómodo entre la edición, el motion graphics y el sonido, resolviendo lo técnico y lo creativo sin perder de vista los tiempos de entrega.",
+      "Arranqué como re-recording mixer y motion grapher en la localización audiovisual, seguí como editor freelance y hoy edito y animo campañas globales y locales para marcas como Amazon, Google, SC Johnson, General Motors, Paramount y LinkedIn. En paralelo estoy terminando la Licenciatura en Producción Audiovisual en la UNTREF.",
+      "También automatizo procesos con inteligencia artificial y uso IA generativa para crear imagen y video, sumando esas herramientas al flujo de trabajo del equipo.",
+      "Si querés charlar de un proyecto, escribíme a matiascrochi@gmail.com.",
     ],
     trayectoria: [
-      { puesto: "Editor / Realizador, Ruido de Mate.", periodo: "(2023 - HOY)" },
-      { puesto: "Editor Audiovisual, Freelance.", periodo: "(2020 - 2023)" },
-      { puesto: "Asistente de Edición, Productora.", periodo: "(2018 - 2020)" },
+      { puesto: "Editor de Video / Motion Graphics, Monks.", periodo: "(2024 - HOY)" },
+      { puesto: "Editor y mezclador de audiolibros, Penguin Random House.", periodo: "(2021 - 2024)" },
+      { puesto: "Re-recording mixer / Editor / Motion, Caja de Ruidos.", periodo: "(2021 - 2024)" },
+      { puesto: "Asistente de dirección, cámara y editor, Pájaros AV.", periodo: "(2019 - 2020)" },
     ],
     estudios: {
       izquierda: [
-        { texto: "Realización Audiovisual.", periodo: "(2018)" },
-        { texto: "Edición y Montaje.", periodo: "(2019)" },
+        { texto: "Licenciatura en Producción Audiovisual, UNTREF.", periodo: "(en curso)" },
+        { texto: "Operador de programas de diseño gráfico (cert. Adobe), Inst. Argentino de Computación.", periodo: "(2018)" },
       ],
       derecha: [
-        { texto: "Dirección de Fotografía, Taller.", periodo: "(2021)" },
-        { texto: "Color, Curso.", periodo: "(2022)" },
-        { texto: "Narrativa Audiovisual.", periodo: "(2020)" },
+        { texto: "Edición de video, Adobe Premiere & DaVinci Resolve.", periodo: "" },
+        { texto: "Motion Graphics, Adobe After Effects.", periodo: "" },
+        { texto: "Edición y mezcla de audio, Pro Tools & Audition.", periodo: "" },
+        { texto: "IA generativa y automatización de procesos.", periodo: "" },
       ],
     },
     herramientas: [
-      "Premiere", "After Effects", "DaVinci Resolve", "Photoshop",
+      "Premiere", "After Effects", "DaVinci Resolve", "Pro Tools", "Audition",
+      "Photoshop", "Illustrator", "Media Encoder", "IA generativa (imagen/video)",
+      "Automatización con IA",
     ],
-    idiomas: ["Español nativo", "Inglés intermedio"],
+    idiomas: ["Español nativo", "Inglés"],
+    portfolioLinks: [
+      { label: "Portfolio completo", url: "https://matiascrochi.myportfolio.com/" },
+    ],
   },
 ];
 

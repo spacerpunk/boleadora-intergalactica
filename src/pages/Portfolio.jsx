@@ -66,6 +66,22 @@ export default function Portfolio() {
           </div>
 
           <PortfolioGrid projects={projects} />
+
+          {member?.portfolioLinks?.length ? (
+            <div id="portfolio__links">
+              {member.portfolioLinks.map((l) => (
+                <a
+                  key={l.label}
+                  className="contact-btn reveal"
+                  href={l.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {l.label} →
+                </a>
+              ))}
+            </div>
+          ) : null}
         </section>
       </main>
 

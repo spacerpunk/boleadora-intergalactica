@@ -1,0 +1,47 @@
+  {
+    id: "matias",
+    nombre: "Matías",
+    nombreCompleto: "Matías Crochi",
+    saludo: "Hola, soy Matías",
+    rol: "Editor de Video / Motion Grapher y Post-productor",
+    tagline: "Post-producción & Motion",
+    accent: "#c9b8f1",
+    portrait: "/imgs/matias-portrait.png",
+    email: "matiascrochi@gmail.com",
+    social: {
+      portfolio: "https://matiascrochi.myportfolio.com/",
+      instagram: "https://www.instagram.com/matiascrochi/",
+      linkedin: "https://www.linkedin.com/in/matiascrochi/",
+      mail: "mailto:matiascrochi@gmail.com",
+    },
+    bio: [
+      "Nací en 1995 en Buenos Aires y hace más de 7 años que vivo de la post-producción audiovisual. Me muevo cómodo entre la edición, el motion graphics y el sonido, resolviendo lo técnico y lo creativo sin perder de vista los tiempos de entrega.",
+      "Arranqué como re-recording mixer y motion grapher en la localización audiovisual, seguí como editor freelance y hoy edito y animo campañas globales y locales para marcas como Amazon, Google, SC Johnson, General Motors, Paramount y LinkedIn. En paralelo estoy terminando la Licenciatura en Producción Audiovisual en la UNTREF.",
+      "También automatizo procesos con inteligencia artificial y uso IA generativa para crear imagen y video, sumando esas herramientas al flujo de trabajo del equipo.",
+      "Si querés charlar de un proyecto, escribíme a matiascrochi@gmail.com.",
+    ],
+    trayectoria: [
+      { puesto: "Editor de Video / Motion Graphics, Monks.", periodo: "(2024 - HOY)" },
+      { puesto: "Editor y mezclador de audiolibros, Penguin Random House.", periodo: "(2021 - 2024)" },
+      { puesto: "Re-recording mixer / Editor / Motion, Caja de Ruidos.", periodo: "(2021 - 2024)" },
+      { puesto: "Asistente de dirección, cámara y editor, Pájaros AV.", periodo: "(2019 - 2020)" },
+    ],
+    estudios: {
+      izquierda: [
+        { texto: "Licenciatura en Producción Audiovisual, UNTREF.", periodo: "(en curso)" },
+        { texto: "Operador de programas de diseño gráfico (cert. Adobe), Inst. Argentino de Computación.", periodo: "(2018)" },
+      ],
+      derecha: [
+        { texto: "Edición de video, Adobe Premiere & DaVinci Resolve.", periodo: "" },
+        { texto: "Motion Graphics, Adobe After Effects.", periodo: "" },
+        { texto: "Edición y mezcla de audio, Pro Tools & Audition.", periodo: "" },
+        { texto: "IA generativa y automatización de procesos.", periodo: "" },
+      ],
+    },
+    herramientas: [
+      "Premiere", "After Effects", "DaVinci Resolve", "Pro Tools", "Audition",
+      "Photoshop", "Illustrator", "Media Encoder", "IA generativa (imagen/video)",
+      "Automatización con IA",
+    ],
+    idiomas: ["Español nativo", "Inglés"],
+  },

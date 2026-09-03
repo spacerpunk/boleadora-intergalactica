@@ -42,22 +42,155 @@ export const PROJECTS = [
     links: [{ label: "Ver reel", url: "#" }],
   },
   {
-    id: "reel-marca",
-    titulo: "Reel de Marca 2024",
-    categoria: "Edición · Branded Content",
-    cliente: "Marca de indumentaria",
-    anio: "2024",
+    id: "toyota-team23",
+    titulo: "Toyota @ Team23",
+    categoria: "IA Generativa · Film Publicitario",
+    cliente: "Toyota (vía Team23)",
+    anio: "2025",
+    owner: "nico",
+    accent: "#d7000f",
+    cover: "/imgs/projects/nico-toyota-team23.jpg",
+    resumen:
+      "Storyboards y assets generados con IA para un film conceptual de Toyota.",
+    descripcion: [
+      "Storyboards e imágenes generadas con IA para un cortometraje conceptual publicitario de Toyota, construidos a partir de referencias y modelos 3D, con dirección de arte de Team23 para mantener el auto fiel al producto real.",
+      "El pipeline combinó ComfyUI, Weave y Fal.ai con modelos como Flux 2, NanoBanana2, Seedream y ChatGPT Image 2. Mi rol fue la generación de imágenes y storyboards, y luego la generación y composición de los elementos de video. Edición, sonido, música y armado final estuvieron a cargo de Team23.",
+    ],
+    tags: ["IA Generativa", "Storyboard", "Compositing", "Automotriz"],
+    links: [
+      {
+        label: "Ver en YouTube",
+        url: "https://www.youtube.com/watch?v=31N6t_bTIJI",
+      },
+      {
+        label: "Caso completo",
+        url: "https://spacerpunk.github.io/work/toyotateam23",
+      },
+      { label: "Team23", url: "https://www.team23.online/" },
+    ],
+  },
+  {
+    id: "dove",
+    titulo: "Dove: Real Virtual Beauty",
+    categoria: "Animación · 3D / Unreal Engine",
+    cliente: "Dove — LOLA MullenLowe",
+    anio: "2022",
     owner: "nico",
     accent: "#bcd4f1",
-    resumen: "Montaje y ritmo para el reel anual de una marca.",
+    cover: "/imgs/projects/nico-dove.jpg",
+    resumen:
+      "Animación de personajes para el lanzamiento global de Dove en el mundo gaming.",
     descripcion: [
-      "Edición y postproducción del reel anual: selección de tomas, armado narrativo y sincronía con la música.",
-      "Se trabajó el color y el pacing para lograr una pieza dinámica pensada para redes y presentaciones.",
+      "Dove entra al mundo del gaming con el lanzamiento global de Real Virtual Beauty, una serie de compromisos que desafían la representación de la belleza online y la educación de la autoestima en el ámbito virtual.",
+      "Trabajé en la animación de personajes del proyecto, realizado con Substance 3D Painter, After Effects, Blender y Unreal Engine. Dirección de Pedro Maccarone para la agencia LOLA MullenLowe Madrid.",
     ],
-    tags: ["Edición", "Color", "Motion"],
+    tags: ["Animación", "Rigging", "Unreal Engine", "Blender", "Personajes"],
     links: [
-      { label: "Ver en Vimeo", url: "#" },
-      { label: "Instagram", url: "https://instagram.com/" },
+      {
+        label: "Behance",
+        url: "https://www.behance.net/gallery/153780873/Dove-Real-Virtual-Beauty",
+      },
+      {
+        label: "Caso completo",
+        url: "https://spacerpunk.github.io/work/dove",
+      },
+    ],
+  },
+  {
+    id: "nasaxhonda",
+    titulo: "NASA × Honda",
+    categoria: "Film Conceptual · Dirección",
+    cliente: "Proyecto personal",
+    anio: "2025",
+    owner: "nico",
+    accent: "#e0503a",
+    cover: "/imgs/projects/nico-nasaxhonda.jpg",
+    resumen:
+      "Cortometraje conceptual: una Honda diseñada por la NASA para cualquier terreno.",
+    descripcion: [
+      "Un cortometraje dinámico de 15 a 30 segundos. Ingenieros de Honda —bajo un programa clasificado junto a la NASA— construyen una moto para cualquier terreno: la Honda XR-LRV, TEST UNIT 03. La misma ingeniería de los rovers de Marte y la Luna llevada a dos ruedas.",
+      "Estética retrofuturista de los años 70–80: granulada, quemada por el sol y cinética, como archivo de la NASA cruzado con motocross en Super 8. El diseño de la moto se resolvió con renders conceptuales generados por IA (Gemini).",
+    ],
+    tags: ["Film Conceptual", "IA Generativa", "Diseño", "Motion"],
+    links: [
+      {
+        label: "Ver en YouTube",
+        url: "https://www.youtube.com/watch?v=_F7XKzWlcxc",
+      },
+      {
+        label: "Caso completo",
+        url: "https://spacerpunk.github.io/projects/NasaXHonda",
+      },
+    ],
+  },
+  {
+    id: "agentic-monks",
+    titulo: "Agentic @ Monks",
+    categoria: "IA Agéntica · Automatización",
+    cliente: "Monks",
+    anio: "2025",
+    owner: "nico",
+    accent: "#c8b6f1",
+    cover: "/imgs/projects/nico-agentic-monks.gif",
+    resumen:
+      "Un pipeline 100% agéntico que genera contenido always-on-brand de punta a punta.",
+    descripcion: [
+      "Un pipeline completamente agéntico construido con Cursor y Claude que conecta las APIs de generación de imagen, texto y video de Google para producir renders siempre fieles a la marca y al producto, alimentando directamente templates de After Effects para generar contenido terminado de forma dinámica.",
+      "Orquestado en n8n, el agente resuelve la toma del brief, el prompt engineering consistente con la marca, la generación y el filtrado de assets, y el poblado de templates: convierte un proceso manual de varios días en una corrida automática que entrega variaciones listas para publicar en minutos.",
+    ],
+    tags: ["IA Agéntica", "n8n", "GenAI", "After Effects", "Automatización"],
+    links: [
+      {
+        label: "Caso completo",
+        url: "https://spacerpunk.github.io/work/agenticmonks",
+      },
+    ],
+  },
+  {
+    id: "tungsteno",
+    titulo: "Tungsteno Films",
+    categoria: "Dirección de Audio · VFX / 3D",
+    cliente: "Tungsteno Films",
+    anio: "2016–2021",
+    owner: "nico",
+    accent: "#8fd6a8",
+    cover: "/imgs/projects/nico-tungsteno.jpg",
+    resumen:
+      "Dirección de audio y VFX/3D en una productora de cine independiente.",
+    descripcion: [
+      "De 2016 a 2021 trabajé como Director de Audio y luego como Generalista de VFX y 3D en esta productora de cine independiente de Buenos Aires (hoy también en Barcelona). Cuatro cortometrajes, el piloto de una serie, una serie animada semanal, pitches en Unreal Engine para clientes y mucha música original.",
+      "Diseño de sonido, música original y mezcla 5.1 en films como La Grieta, Abismo y NO! (Festival Internacional de Mar del Plata), además de animación, render y compositing en piezas para Pringles y la experiencia Legends en el Museo del Fútbol de Barcelona.",
+    ],
+    tags: ["Sound Design", "Música Original", "VFX", "3D", "Unreal Engine"],
+    links: [
+      { label: "Tungsteno Films", url: "https://tungstenofilms.com/projects" },
+      {
+        label: "Caso completo",
+        url: "https://spacerpunk.github.io/work/Tungsteno",
+      },
+    ],
+  },
+  {
+    id: "atea",
+    titulo: "ATEA — Música Original",
+    categoria: "Música · Sound Design",
+    cliente: "ATEA (marca de indumentaria)",
+    anio: "2021",
+    owner: "nico",
+    accent: "#d8c8f1",
+    resumen:
+      "Horas de música original compuestas para una marca de indumentaria.",
+    descripcion: [
+      "ATEA es una marca de indumentaria para la que compuse horas de música original para un video de playlist chill.",
+      "Podés escuchar extractos del score en Bandcamp.",
+    ],
+    tags: ["Música Original", "Composición", "Sound Design"],
+    links: [
+      {
+        label: "Escuchar en Bandcamp",
+        url: "https://spacerpunk.bandcamp.com/album/atea-tracks",
+      },
+      { label: "Caso completo", url: "https://spacerpunk.github.io/work/atea" },
     ],
   },
   {
@@ -167,19 +300,228 @@ export const PROJECTS = [
     ],
   },
   {
-    id: "matias-portfolio",
-    titulo: "Portfolio Audiovisual",
-    categoria: "Edición · Realización",
+    id: "mati-genius",
+    titulo: "Generation Genius",
+    categoria: "Motion Graphics",
     owner: "matias",
-    accent: "#c8e6d0",
-    resumen: "Selección de piezas de edición y realización.",
+    accent: "#c9b8f1",
+    cover: "/imgs/projects/mati-genius.jpg",
+    resumen: "Motion graphics para contenido educativo de Generation Genius.",
     descripcion: [
-      "Una selección de trabajos audiovisuales: publicidad, videoclips y contenido de marca, editados y realizados de principio a fin.",
-      "Podés ver el portfolio completo en el siguiente enlace.",
+      "Animación y motion graphics para piezas de Generation Genius.",
+      "Diseño de movimiento pensado para acompañar y clarificar el contenido.",
     ],
-    tags: ["Edición", "Realización", "Video"],
+    tags: ["Motion Graphics", "After Effects", "Animación"],
     links: [
-      { label: "Ver portfolio", url: "https://matiascrochi.myportfolio.com/videos" },
+      {
+        label: "Ver en portfolio",
+        url: "https://matiascrochi.myportfolio.com/genaration-genius",
+      },
+    ],
+  },
+  {
+    id: "mati-tupperware",
+    titulo: "Tupperware",
+    categoria: "Cámara · Publicidad",
+    cliente: "Tupperware",
+    owner: "matias",
+    accent: "#c9b8f1",
+    cover: "/imgs/projects/mati-tupperware.jpg",
+    resumen: "Trabajo de cámara para una pieza publicitaria de Tupperware.",
+    descripcion: [
+      "Cámara para una pieza publicitaria de Tupperware.",
+      "Registro de producto y planos de apoyo para la campaña.",
+    ],
+    tags: ["Cámara", "Publicidad", "Producto"],
+    links: [
+      {
+        label: "Ver en portfolio",
+        url: "https://matiascrochi.myportfolio.com/tupperware",
+      },
+    ],
+  },
+  {
+    id: "mati-wemove",
+    titulo: "We Move Training",
+    categoria: "Edición",
+    cliente: "We Move Training",
+    owner: "matias",
+    accent: "#c9b8f1",
+    cover: "/imgs/projects/mati-wemove.jpg",
+    resumen: "Edición de video para We Move Training.",
+    descripcion: [
+      "Edición y armado de una pieza para We Move Training.",
+      "Montaje y ritmo pensados para el contenido de entrenamiento.",
+    ],
+    tags: ["Edición", "Montaje", "Video"],
+    links: [
+      {
+        label: "Ver en portfolio",
+        url: "https://matiascrochi.myportfolio.com/we-move",
+      },
+    ],
+  },
+  {
+    id: "mati-cvo",
+    titulo: "CVO — ENERC",
+    categoria: "Realización y Edición",
+    cliente: "ENERC",
+    owner: "matias",
+    accent: "#c9b8f1",
+    cover: "/imgs/projects/mati-cvo.jpg",
+    resumen: "Realización y edición de una entrevista para el CVO (ENERC).",
+    descripcion: [
+      "Realización y edición de una entrevista para el CVO, sede regional de la ENERC.",
+      "Registro y montaje de la pieza de principio a fin.",
+    ],
+    tags: ["Realización", "Edición", "Entrevista"],
+    links: [
+      {
+        label: "Ver en portfolio",
+        url: "https://matiascrochi.myportfolio.com/entrevista-para-cvo-enerc",
+      },
+    ],
+  },
+  {
+    id: "mati-lara-casa",
+    titulo: "Lara Casa",
+    categoria: "Cámara · Publicidad",
+    cliente: "Lara Casa",
+    owner: "matias",
+    accent: "#c9b8f1",
+    cover: "/imgs/projects/mati-laracasa.jpg",
+    resumen: "Trabajo de cámara para una publicidad de Lara Casa.",
+    descripcion: [
+      "Cámara para una pieza publicitaria de Lara Casa.",
+      "Captura de imagen para la campaña.",
+    ],
+    tags: ["Cámara", "Publicidad"],
+    links: [
+      {
+        label: "Ver en portfolio",
+        url: "https://matiascrochi.myportfolio.com/publicidad-lara-casa",
+      },
+    ],
+  },
+  {
+    id: "mati-ambar-violeta",
+    titulo: "Ámbar Violeta",
+    categoria: "Realización",
+    owner: "matias",
+    accent: "#c9b8f1",
+    cover: "/imgs/projects/mati-ambar.jpg",
+    resumen: "Realización de la pieza Ámbar Violeta.",
+    descripcion: [
+      "Realización del videoclip Ámbar Violeta.",
+      "Dirección y puesta en imagen de la pieza.",
+    ],
+    tags: ["Realización", "Videoclip"],
+    links: [
+      {
+        label: "Ver en portfolio",
+        url: "https://matiascrochi.myportfolio.com/ambar-violeta-mechi",
+      },
+    ],
+  },
+  {
+    id: "mati-jara-beats",
+    titulo: "Jara Iktan Beats",
+    categoria: "Realización y Edición",
+    owner: "matias",
+    accent: "#c9b8f1",
+    cover: "/imgs/projects/mati-jara.jpg",
+    resumen: "Realización y edición de Jara Iktan Beats.",
+    descripcion: [
+      "Realización y edición de la pieza Jara Iktan Beats.",
+      "Rodaje y montaje trabajados de punta a punta.",
+    ],
+    tags: ["Realización", "Edición", "Música"],
+    links: [
+      {
+        label: "Ver en portfolio",
+        url: "https://matiascrochi.myportfolio.com/jara-iktan-beats",
+      },
+    ],
+  },
+  {
+    id: "mati-harto",
+    titulo: "Harto",
+    categoria: "Foquista",
+    owner: "matias",
+    accent: "#c9b8f1",
+    cover: "/imgs/projects/mati-harto.jpg",
+    resumen: "Foquista en el rodaje de Harto.",
+    descripcion: [
+      "Trabajo como foquista en el rodaje de Harto.",
+      "Control de foco durante la captura de imagen.",
+    ],
+    tags: ["Foquista", "Rodaje", "Cámara"],
+    links: [
+      {
+        label: "Ver en portfolio",
+        url: "https://matiascrochi.myportfolio.com/harto",
+      },
+    ],
+  },
+  {
+    id: "mati-azcuy",
+    titulo: "Azcuy",
+    categoria: "Edición",
+    cliente: "Azcuy",
+    owner: "matias",
+    accent: "#c9b8f1",
+    cover: "/imgs/projects/mati-azcuy.jpg",
+    resumen: "Edición de una pieza para Azcuy.",
+    descripcion: [
+      "Edición y montaje de una pieza para Azcuy.",
+      "Armado y ritmo del material.",
+    ],
+    tags: ["Edición", "Montaje"],
+    links: [
+      {
+        label: "Ver en portfolio",
+        url: "https://matiascrochi.myportfolio.com/azcuy",
+      },
+    ],
+  },
+  {
+    id: "mati-freestyle",
+    titulo: "Freestyle — Iktan Jara",
+    categoria: "Realización",
+    owner: "matias",
+    accent: "#c9b8f1",
+    cover: "/imgs/projects/mati-freestyle.jpg",
+    resumen: "Realización de una sesión de freestyle de Iktan Jara.",
+    descripcion: [
+      "Realización de una sesión de freestyle de Iktan Jara.",
+      "Registro en imagen de la performance.",
+    ],
+    tags: ["Realización", "Música", "Performance"],
+    links: [
+      {
+        label: "Ver en portfolio",
+        url: "https://matiascrochi.myportfolio.com/freestyle",
+      },
+    ],
+  },
+  {
+    id: "mati-santa-chana",
+    titulo: "La Santa Chana",
+    categoria: "Asistente de Dirección",
+    owner: "matias",
+    accent: "#c9b8f1",
+    cover: "/imgs/projects/mati-santachana.jpg",
+    resumen: "Asistencia de dirección en secuencias de La Santa Chana.",
+    descripcion: [
+      "Asistente de dirección en las secuencias de La Santa Chana.",
+      "Apoyo a la dirección durante el rodaje.",
+    ],
+    tags: ["Asistencia de Dirección", "Rodaje"],
+    links: [
+      {
+        label: "Ver en portfolio",
+        url: "https://matiascrochi.myportfolio.com/secuencias-la-santa-chana",
+      },
     ],
   },
   {
@@ -205,7 +547,13 @@ export function getProjectsByOwner(id) {
 }
 
 // Curated selection shown full-width on the home page.
-const FEATURED_IDS = ["fud", "ceci-exteriores", "tienda10", "ceci-shortfilm"];
+const FEATURED_IDS = [
+  "toyota-team23",
+  "fud",
+  "ceci-exteriores",
+  "tienda10",
+  "ceci-shortfilm",
+];
 
 export function getFeatured() {
   return FEATURED_IDS.map((id) => PROJECTS.find((p) => p.id === id)).filter(

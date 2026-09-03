@@ -624,6 +624,14 @@ button.contact-btn {
   max-width: 1144px;
 }
 
+#portfolio__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
 .portfolio-cell {
   aspect-ratio: 4 / 3;
   border-radius: 1rem;
