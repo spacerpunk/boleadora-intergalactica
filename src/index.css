@@ -153,13 +153,17 @@ a#navbar__logo {
 
 #main__hero {
   margin: 0 auto;
-  display: flex;
+  width: 90%;
+  max-width: 420px;
 }
 
 #main__hero__img {
-  margin: 0 auto;
-  width: 90%;
-  height: auto;
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 1.25rem;
 }
 
 #main__text {
@@ -476,6 +480,122 @@ a#navbar__logo {
 .contact-btn:hover {
   background-color: #222222;
   color: #ffffff;
+}
+
+/* Solid variant + button reset (used as <button>) */
+.contact-btn--solid {
+  background-color: #222222;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.contact-btn--solid:hover {
+  background-color: #000000;
+}
+
+button.contact-btn {
+  font-size: 1rem;
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- Brief / contact form (inside .modal--form) --- */
+.modal.modal--form {
+  max-width: 620px;
+}
+
+.brief-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.brief-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem;
+}
+
+.brief-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.brief-field > span {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #666666;
+}
+
+.brief-field input,
+.brief-field select,
+.brief-field textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid #e4e4e4;
+  border-radius: 0.75rem;
+  background-color: #fafafa;
+  color: #222222;
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.brief-field textarea {
+  resize: vertical;
+  min-height: 96px;
+}
+
+.brief-field input:focus,
+.brief-field select:focus,
+.brief-field textarea:focus {
+  outline: none;
+  border-color: #222222;
+  background-color: #ffffff;
+}
+
+.brief-form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.9rem;
+  margin-top: 0.4rem;
+}
+
+.brief-link {
+  font-size: 0.85rem;
+  color: #888888;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.brief-link:hover {
+  color: #222222;
+  border-bottom-color: #222222;
+}
+
+.brief-sent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  align-items: flex-start;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 560px) {
+  .brief-form__row {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* PORTFOLIO */
@@ -1044,6 +1164,38 @@ body {
 }
 [data-theme="dark"] .modal__close:hover {
   background: #26272b;
+}
+
+/* --- Brief / contact form --- */
+[data-theme="dark"] .brief-field > span {
+  color: #9a9a9a;
+}
+[data-theme="dark"] .brief-field input,
+[data-theme="dark"] .brief-field select,
+[data-theme="dark"] .brief-field textarea {
+  background-color: #202126;
+  border-color: #2a2b2f;
+  color: #ededed;
+}
+[data-theme="dark"] .brief-field input:focus,
+[data-theme="dark"] .brief-field select:focus,
+[data-theme="dark"] .brief-field textarea:focus {
+  border-color: #ededed;
+  background-color: #26272b;
+}
+[data-theme="dark"] .brief-link {
+  color: #9a9a9a;
+}
+[data-theme="dark"] .brief-link:hover {
+  color: #ededed;
+  border-bottom-color: #ededed;
+}
+[data-theme="dark"] .contact-btn--solid {
+  background-color: #ededed;
+  color: #17181b;
+}
+[data-theme="dark"] .contact-btn--solid:hover {
+  background-color: #ffffff;
 }
 
 /* ============================================================

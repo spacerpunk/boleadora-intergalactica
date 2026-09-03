@@ -1,0 +1,47 @@
+{
+  "id": "ceci",
+  "nombre": "Ceci",
+  "nombreCompleto": "Cecilia Fagoaga",
+  "saludo": "Hola, soy Ceci",
+  "rol": "Sonidista",
+  "tagline": "Postproducción de sonido",
+  "accent": "#c8d8f1",
+  "portrait": "/imgs/ceci-portrait.png",
+  "email": "fagoagacecilia@gmail.com",
+  "social": {
+    "instagram": "",
+    "behance": "",
+    "github": "",
+    "mail": "mailto:fagoagacecilia@gmail.com"
+  },
+  "bio": [
+    "Desde hace 4 años me dedico al área de postproducción de sonido en cine y series.",
+    "Grabo y edito foley y también hago diseño de sonido para mini documentales web desde hace ya dos años.",
+    "Trabajé en proyectos como El Eternauta, Los Delincuentes, Envidiosa, entre otras cositas. También doy clases en FADU en Sonido 1",
+    "Si te interesa charlar escribime a fagoagacecilia@gmail.com."
+  ],
+  "trayectoria": [
+    {
+      "puesto": "Postproducción y Diseño de sonido",
+      "periodo": "(2022 - HOY)"
+    }
+  ],
+  "estudios": {
+    "izquierda": "Diseñadora de Imagen y sonido, Universidad de Buenos Aires",
+    "derecha": []
+  },
+  "herramientas": [
+    "Protools",
+    "Reaper"
+  ],
+  "idiomas": [
+    "Español nativo",
+    "Ingles"
+  ],
+  "proyectos": [
+    "El Eternauta",
+    "Los Delincuentes",
+    "Envidiosa",
+    "El Encargado"
+  ]
+}

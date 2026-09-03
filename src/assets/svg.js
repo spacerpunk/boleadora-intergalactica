@@ -264,28 +264,16 @@ export const SOCIAL_ICONS = {
   <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M17.5 6.5H17.51" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`,
-  "behance": `<svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M10 20.5675C6.57143 21.7248 3.71429 20.5675 2 17"
-              stroke="#222222"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M10 22V18.7579C10 18.1596 10.1839 17.6396 10.4804 17.1699C10.6838 16.8476 10.5445 16.3904 10.1771 16.2894C7.13394 15.4528 5 14.1077 5 9.64606C5 8.48611 5.38005 7.39556 6.04811 6.4464C6.21437 6.21018 6.29749 6.09208 6.31748 5.9851C6.33746 5.87813 6.30272 5.73852 6.23322 5.45932C5.95038 4.32292 5.96871 3.11619 6.39322 2.02823C6.39322 2.02823 7.27042 1.74242 9.26698 2.98969C9.72282 3.27447 9.95075 3.41686 10.1515 3.44871C10.3522 3.48056 10.6206 3.41384 11.1573 3.28041C11.8913 3.09795 12.6476 3 13.5 3C14.3524 3 15.1087 3.09795 15.8427 3.28041C16.3794 3.41384 16.6478 3.48056 16.8485 3.44871C17.0493 3.41686 17.2772 3.27447 17.733 2.98969C19.7296 1.74242 20.6068 2.02823 20.6068 2.02823C21.0313 3.11619 21.0496 4.32292 20.7668 5.45932C20.6973 5.73852 20.6625 5.87813 20.6825 5.9851C20.7025 6.09207 20.7856 6.21019 20.9519 6.4464C21.6199 7.39556 22 8.48611 22 9.64606C22 14.1077 19.8661 15.4528 16.8229 16.2894C16.4555 16.3904 16.3162 16.8476 16.5196 17.1699C16.8161 17.6396 17 18.1596 17 18.7579V22"
-              stroke="#222222"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>`,
+  "behance": `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M2.5 7H6.8C8.01 7 9 7.9 9 9.1C9 10.3 8.01 11.2 6.8 11.2H2.5V7Z" stroke="#222222" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M2.5 11.2H7.2C8.52 11.2 9.6 12.15 9.6 13.5C9.6 14.85 8.52 15.8 7.2 15.8H2.5V11.2Z" stroke="#222222" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M14.2 13.7C14.2 11.75 15.55 10.3 17.4 10.3C19.25 10.3 20.5 11.75 20.5 13.55C20.5 13.8 20.48 14 20.45 14.2H14.2C14.32 15.45 15.35 16.3 16.7 16.3C17.65 16.3 18.4 15.9 18.85 15.25" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M15.6 7.8H19.4" stroke="#222222" stroke-width="1.5" stroke-linecap="round"/>
+</svg>`,
+  "youtube": `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="2" y="5" width="20" height="14" rx="4.5" stroke="#222222" stroke-width="1.5"/>
+  <path d="M10 9.5L15.5 12L10 14.5V9.5Z" stroke="#222222" stroke-width="1.5" stroke-linejoin="round"/>
+</svg>`,
   "linkedin": `<svg
             width="24"
             height="24"

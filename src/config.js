@@ -4,7 +4,6 @@ export const STUDIO = {
   copyright: "Ruido de Mate®",
   social: {
     instagram: "https://www.instagram.com/nico.reque/",
-    behance: "https://www.behance.net/Bennja",
     github: "https://github.com/spacerpunk",
     mail: "mailto:requena.nicolas@gmail.com",
   },

@@ -1,14 +1,16 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { TEAM } from "../data/team.js";
 import { STUDIO } from "../config.js";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
 import TeamCard from "../components/TeamCard.jsx";
 import FeaturedWorks from "../components/FeaturedWorks.jsx";
+import ContactModal from "../components/ContactModal.jsx";
 import { useReveal } from "../hooks/useReveal.js";
 
 export default function Home() {
   useReveal("home");
+  const [contactOpen, setContactOpen] = useState(false);
 
   useEffect(() => {
     document.title = `${STUDIO.nombre} — Postproducción & Creatividad`;
@@ -56,15 +58,27 @@ export default function Home() {
         <section id="contacto" className="section">
           <h2 className="reveal">Trabajemos juntos</h2>
           <p className="paragraph reveal">
-            ¿Tenés un proyecto en mente? Escribinos y contanos de qué se trata.
+            ¿Tenés un proyecto en mente? Contanos de qué se trata y te
+            respondemos con una propuesta.
           </p>
-          <a className="contact-btn reveal" href={mailto}>
-            {mailto.replace("mailto:", "")}
-          </a>
+          <div className="contact-actions reveal">
+            <button
+              type="button"
+              className="contact-btn contact-btn--solid"
+              onClick={() => setContactOpen(true)}
+            >
+              Trabajemos juntos
+            </button>
+            <a className="contact-btn" href={mailto}>
+              {mailto.replace("mailto:", "")}
+            </a>
+          </div>
         </section>
       </main>
 
       <Footer name={STUDIO.copyright} />
+
+      <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
     </>
   );
 }
