@@ -5,6 +5,6 @@ export const STUDIO = {
   social: {
     instagram: "https://www.instagram.com/nico.reque/",
     github: "https://github.com/spacerpunk",
-    mail: "mailto:requena.nicolas@gmail.com",
+    mail: "mailto:ruidodemate.ar@gmail.com",
   },
 };

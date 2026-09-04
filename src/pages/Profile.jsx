@@ -2,12 +2,14 @@ import { useEffect } from "react";
 import { useParams, Navigate, Link } from "react-router-dom";
 import { getMember } from "../data/team.js";
 import { STUDIO } from "../config.js";
+import { useLanguage, L } from "../i18n/LanguageContext.jsx";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
 import ToolBubble from "../components/ToolBubble.jsx";
 import { useReveal } from "../hooks/useReveal.js";
 
 export default function Profile() {
+  const { lang, t } = useLanguage();
   const { id } = useParams();
   const member = getMember(id);
 
@@ -21,12 +23,14 @@ export default function Profile() {
 
   if (!member) return <Navigate to="/" replace />;
 
+  const bio = L(member.bio, lang);
+
   return (
     <>
       <Navbar
         nav={[
-          { label: "Equipo", href: "/#equipo" },
-          { label: "Portfolio", to: "/portfolio", muted: true },
+          { label: t("nav.equipo"), href: "/#equipo" },
+          { label: t("nav.portfolio"), to: "/portfolio", muted: true },
         ]}
         social={member.social}
       />
@@ -34,15 +38,15 @@ export default function Profile() {
       <main>
         <div id="main" className="section">
           <div id="main__text">
-            <h1 className="reveal">{member.saludo}</h1>
+            <h1 className="reveal">{L(member.saludo, lang)}</h1>
             <p className="paragraph reveal">
-              {member.rol}.
+              {L(member.rol, lang)}.
               <br />
               <br />
-              {member.bio.map((para, i) => (
+              {bio.map((para, i) => (
                 <span key={i}>
                   {para}
-                  {i < member.bio.length - 1 ? (
+                  {i < bio.length - 1 ? (
                     <>
                       <br />
                       <br />
@@ -55,39 +59,39 @@ export default function Profile() {
               className="contact-btn reveal"
               to={`/portfolio/${member.id}`}
             >
-              Ver portfolio de {member.nombre} →
+              {t("profile.viewPortfolio", { name: member.nombre })}
             </Link>
           </div>
           <div id="main__hero" className="reveal">
             <img
               src={member.portrait}
-              alt={`Retrato de ${member.nombreCompleto}`}
+              alt={t("profile.portraitAlt", { name: member.nombreCompleto })}
               id="main__hero__img"
             />
           </div>
         </div>
 
         <div id="trayectoria-laboral" className="section">
-          <h2 className="reveal">Trayectoria Laboral</h2>
+          <h2 className="reveal">{t("profile.trayectoria")}</h2>
           <ul>
             {member.trayectoria.map((item, i) => (
               <li className="reveal" key={i}>
-                {item.puesto}
-                <span>{item.periodo}</span>
+                {L(item.puesto, lang)}
+                <span>{L(item.periodo, lang)}</span>
               </li>
             ))}
           </ul>
         </div>
 
         <div id="estudios" className="section">
-          <h2 className="reveal">Estudios y Certificaciones</h2>
+          <h2 className="reveal">{t("profile.estudios")}</h2>
           <div id="estudios__sections">
             <div className="estudios__section text-align-right">
               <ul>
                 {member.estudios.izquierda.map((item, i) => (
                   <li className="reveal" key={i}>
-                    {item.texto}
-                    <span>{item.periodo}</span>
+                    {L(item.texto, lang)}
+                    <span>{L(item.periodo, lang)}</span>
                   </li>
                 ))}
               </ul>
@@ -96,8 +100,8 @@ export default function Profile() {
               <ul>
                 {member.estudios.derecha.map((item, i) => (
                   <li className="reveal" key={i}>
-                    {item.texto}
-                    <span>{item.periodo}</span>
+                    {L(item.texto, lang)}
+                    <span>{L(item.periodo, lang)}</span>
                   </li>
                 ))}
               </ul>
@@ -106,7 +110,7 @@ export default function Profile() {
         </div>
 
         <div id="tecnologias" className="section">
-          <h2 className="reveal">Herramientas / Tecnologías</h2>
+          <h2 className="reveal">{t("profile.herramientas")}</h2>
           <div id="tools">
             {member.herramientas.map((name) => (
               <ToolBubble key={name} name={name} />
@@ -115,11 +119,11 @@ export default function Profile() {
         </div>
 
         <div id="idioma" className="section">
-          <h2 className="reveal">Idiomas</h2>
+          <h2 className="reveal">{t("profile.idiomas")}</h2>
           <ul>
             {member.idiomas.map((idioma, i) => (
               <li className="reveal" key={i}>
-                {idioma}
+                {L(idioma, lang)}
               </li>
             ))}
           </ul>

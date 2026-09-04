@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { TEAM } from "../data/team.js";
 import { STUDIO } from "../config.js";
+import { useLanguage } from "../i18n/LanguageContext.jsx";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
 import TeamCard from "../components/TeamCard.jsx";
@@ -9,12 +10,13 @@ import ContactModal from "../components/ContactModal.jsx";
 import { useReveal } from "../hooks/useReveal.js";
 
 export default function Home() {
+  const { t } = useLanguage();
   useReveal("home");
   const [contactOpen, setContactOpen] = useState(false);
 
   useEffect(() => {
-    document.title = `${STUDIO.nombre} — Postproducción & Creatividad`;
-  }, []);
+    document.title = `${STUDIO.nombre} — ${t("home.docTitle")}`;
+  }, [t]);
 
   const mailto = STUDIO.social.mail;
 
@@ -22,9 +24,9 @@ export default function Home() {
     <>
       <Navbar
         nav={[
-          { label: "Trabajos", href: "#trabajos" },
-          { label: "Equipo", href: "#equipo" },
-          { label: "Portfolio", to: "/portfolio", muted: true },
+          { label: t("nav.trabajos"), href: "#trabajos" },
+          { label: t("nav.equipo"), href: "#equipo" },
+          { label: t("nav.portfolio"), to: "/portfolio", muted: true },
         ]}
         social={STUDIO.social}
       />
@@ -32,22 +34,16 @@ export default function Home() {
       <main>
         <header id="hero" className="section">
           <div id="hero__text">
-            <span className="hero__eyebrow reveal">
-              Postproducción &amp; Creatividad
-            </span>
+            <span className="hero__eyebrow reveal">{t("home.eyebrow")}</span>
             <h1 className="reveal">{STUDIO.nombre}</h1>
-            <p className="paragraph reveal">
-              Somos un equipo de postproductores y creativos. Diseño, edición,
-              dirección de arte y VFX bajo un mismo techo — de la idea a la
-              pieza final.
-            </p>
+            <p className="paragraph reveal">{t("home.heroText")}</p>
           </div>
         </header>
 
         <FeaturedWorks />
 
         <section id="equipo" className="section">
-          <h2 className="reveal">El equipo</h2>
+          <h2 className="reveal">{t("home.teamTitle")}</h2>
           <div id="team-grid">
             {TEAM.map((member) => (
               <TeamCard key={member.id} member={member} />
@@ -56,18 +52,15 @@ export default function Home() {
         </section>
 
         <section id="contacto" className="section">
-          <h2 className="reveal">Trabajemos juntos</h2>
-          <p className="paragraph reveal">
-            ¿Tenés un proyecto en mente? Contanos de qué se trata y te
-            respondemos con una propuesta.
-          </p>
+          <h2 className="reveal">{t("home.contactTitle")}</h2>
+          <p className="paragraph reveal">{t("home.contactText")}</p>
           <div className="contact-actions reveal">
             <button
               type="button"
               className="contact-btn contact-btn--solid"
               onClick={() => setContactOpen(true)}
             >
-              Trabajemos juntos
+              {t("home.contactCta")}
             </button>
             <a className="contact-btn" href={mailto}>
               {mailto.replace("mailto:", "")}

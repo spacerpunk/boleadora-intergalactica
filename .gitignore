@@ -13,3 +13,6 @@ Thumbs.db
 # logs
 npm-debug.log*
 *.local
+
+# claude code (local skills/config)
+.claude/

@@ -11,6 +11,13 @@
   font-family: "Bricolage Grotesque", sans-serif;
 }
 
+html,
+body {
+  /* Guard against any child overflowing horizontally on small screens. */
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 body {
   font-family: "Bricolage Grotesque", sans-serif;
   color: var(--primary-text-color);
@@ -693,14 +700,47 @@ footer {
     font-size: 3rem;
     line-height: 3.4rem;
   }
+
+  /* --- Mobile navbar: two rows ---
+     The centered, absolutely-positioned logo overlapped the nav links and the
+     control icons on narrow screens. On mobile we drop the absolute
+     positioning and let the bar wrap: row 1 = logo + controls, row 2 = links. */
   #navbar {
-    padding: 8px 20px;
+    height: auto;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 10px 16px;
+    row-gap: 6px;
+    column-gap: 8px;
+  }
+  #navbar__logo {
+    position: static;
+    left: auto;
+    transform: none;
+    order: 0;
+    margin-right: auto;
+  }
+  #navbar__rrss {
+    order: 1;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.25rem;
   }
   #navbar__navigation {
-    gap: 0.75rem;
+    order: 2;
+    flex-basis: 100%;
+    justify-content: center;
+    gap: 1.25rem;
   }
+  .navbar__rrss__icon {
+    padding: 8px;
+  }
+  .lang-toggle {
+    padding-inline: 10px;
+  }
+
   #hero {
-    padding: 8rem 1.25rem 2rem;
+    padding: 9rem 1.25rem 2rem;
   }
   #team-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -708,10 +748,26 @@ footer {
   #portfolio-grid {
     grid-template-columns: 1fr;
   }
+
+  /* Profile sections had no horizontal padding, so text ran to the edges and
+     looked cut off. Give every profile block room to breathe. */
+  #main {
+    padding: 9rem 1.25rem 3rem;
+  }
+  #trayectoria-laboral,
+  #estudios,
+  #idioma,
+  #tecnologias {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
   #estudios__sections {
     flex-direction: column;
     align-items: center;
     width: 100%;
+  }
+  .estudios__section {
+    max-width: 100%;
   }
   .text-align-right,
   .text-align-left {
@@ -719,6 +775,9 @@ footer {
   }
   #tools {
     max-width: 100%;
+  }
+  #portfolio {
+    padding-top: 10rem;
   }
   .footer__separator {
     width: calc(100% - 40px);
@@ -1101,9 +1160,41 @@ body {
   color: inherit;
 }
 
+/* Language toggle: globe icon + current language code */
+.lang-toggle {
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  align-items: center;
+  gap: 0.35rem;
+  padding-inline: 12px;
+}
+
+.lang-toggle__code {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.02rem;
+  color: #222222;
+}
+
+[data-theme="dark"] .lang-toggle__code {
+  color: #ededed;
+}
+
 /* --- Tools --- */
+/* #tecnologias hard-codes a white background for light mode; without this
+   override the section stayed white in dark mode, hiding the near-white pill
+   text and labels. Also bump the pill contrast in dark. */
+[data-theme="dark"] #tecnologias {
+  background-color: transparent;
+}
 [data-theme="dark"] .tool-bubble {
-  border-color: #3a3b40;
+  border-color: #4c4d54;
+  background-color: #1b1c20;
+}
+[data-theme="dark"] .tool-bubble p {
+  color: #ededed;
 }
 
 /* --- Home --- */

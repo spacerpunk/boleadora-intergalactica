@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { LOGO_SVG, SOCIAL_ICONS } from "../assets/svg.js";
 import { STUDIO } from "../config.js";
+import { useLanguage } from "../i18n/LanguageContext.jsx";
 import RawSvg from "./RawSvg.jsx";
 import ThemeToggle from "./ThemeToggle.jsx";
+import LanguageToggle from "./LanguageToggle.jsx";
 
 /**
  * Shared navbar.
@@ -10,10 +12,12 @@ import ThemeToggle from "./ThemeToggle.jsx";
  * @param {Object} social  map of social keys -> href (defaults to studio)
  */
 export default function Navbar({ nav, social = STUDIO.social }) {
+  const { t } = useLanguage();
+
   const items =
     nav || [
-      { label: "Equipo", href: "/#equipo" },
-      { label: "Contacto", href: "/#contacto", muted: true },
+      { label: t("nav.equipo"), href: "/#equipo" },
+      { label: t("nav.contacto"), href: "/#contacto", muted: true },
     ];
 
   return (
@@ -30,11 +34,12 @@ export default function Navbar({ nav, social = STUDIO.social }) {
         ))}
       </ul>
 
-      <Link id="navbar__logo" to="/" aria-label="Inicio">
+      <Link id="navbar__logo" to="/" aria-label={t("nav.inicio")}>
         <RawSvg html={LOGO_SVG} />
       </Link>
 
       <div id="navbar__rrss">
+        <LanguageToggle />
         <ThemeToggle />
         {Object.keys(social)
           .filter((key) => SOCIAL_ICONS[key])

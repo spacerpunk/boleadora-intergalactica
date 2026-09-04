@@ -2,22 +2,21 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { getFeatured } from "../data/projects.js";
 import { getMember } from "../data/team.js";
+import { useLanguage, L } from "../i18n/LanguageContext.jsx";
 import ProjectModal from "./ProjectModal.jsx";
 
 export default function FeaturedWorks() {
+  const { lang, t } = useLanguage();
   const [selected, setSelected] = useState(null);
   const featured = getFeatured();
 
   return (
     <section id="trabajos" className="section">
       <div className="trabajos__head">
-        <h2 className="reveal">Nuestros trabajos</h2>
-        <p className="paragraph reveal">
-          Una selección de piezas del equipo. Mirá el detalle de cada una o
-          explorá el portfolio completo.
-        </p>
+        <h2 className="reveal">{t("featured.title")}</h2>
+        <p className="paragraph reveal">{t("featured.text")}</p>
         <Link className="contact-btn reveal" to="/portfolio">
-          Ver todo el portfolio →
+          {t("featured.seeAll")}
         </Link>
       </div>
 
@@ -31,7 +30,7 @@ export default function FeaturedWorks() {
               className="feature reveal"
               style={{ "--accent": project.accent || "#efefef" }}
               onClick={() => setSelected(project)}
-              aria-label={`Ver proyecto ${project.titulo}`}
+              aria-label={t("project.viewAria", { title: project.titulo })}
             >
               <div className="feature__media">
                 {project.cover ? (
@@ -45,12 +44,12 @@ export default function FeaturedWorks() {
               <div className="feature__overlay">
                 <div className="feature__info">
                   <span className="feature__cat">
-                    {project.categoria}
+                    {L(project.categoria, lang)}
                     {owner ? ` · ${owner.nombre}` : ""}
                   </span>
                   <h3 className="feature__title">{project.titulo}</h3>
                 </div>
-                <span className="feature__cta">Ver proyecto →</span>
+                <span className="feature__cta">{t("project.view")}</span>
               </div>
             </button>
           );

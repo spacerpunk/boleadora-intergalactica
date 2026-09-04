@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { STUDIO } from "../config.js";
+import { useLanguage } from "../i18n/LanguageContext.jsx";
+import { CONTACT_TYPES, CONTACT_BUDGETS } from "../i18n/strings.js";
 
 // Contact / project-brief modal. Opens from the "Trabajemos juntos" button.
 // Closes on backdrop click, the × button, or Escape.
@@ -8,36 +10,22 @@ import { STUDIO } from "../config.js";
 // mailto to the studio address (so it works today, alongside the plain mail
 // link). To wire this to Supabase / Formspree / an API route later, replace the
 // body of `handleSubmit` — the `data` object already holds every field.
-
-const TIPOS = [
-  "Edición / Montaje",
-  "VFX / 3D",
-  "Diseño de sonido / Foley",
-  "Dirección de arte",
-  "Diseño / Front-end",
-  "Proyecto integral",
-  "Otro",
-];
-
-const PRESUPUESTOS = [
-  "A definir",
-  "Menos de USD 1.000",
-  "USD 1.000 – 5.000",
-  "USD 5.000 – 15.000",
-  "Más de USD 15.000",
-];
+//
+// The type/budget selects store their index (not the label), so the composed
+// mailto is written in whatever language is active at submit time.
 
 const EMPTY = {
   nombre: "",
   email: "",
   empresa: "",
-  tipo: TIPOS[0],
-  presupuesto: PRESUPUESTOS[0],
+  tipo: 0,
+  presupuesto: 0,
   plazo: "",
   mensaje: "",
 };
 
 export default function ContactModal({ open, onClose }) {
+  const { lang, t } = useLanguage();
   const [data, setData] = useState(EMPTY);
   const [sent, setSent] = useState(false);
 
@@ -79,16 +67,18 @@ export default function ContactModal({ open, onClose }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const subject = `Brief de proyecto — ${data.nombre || "Nuevo contacto"}`;
+    const subject = t("brief.subject", {
+      name: data.nombre || t("brief.newContact"),
+    });
     const body = [
-      `Nombre: ${data.nombre}`,
-      `Email: ${data.email}`,
-      data.empresa ? `Empresa / marca: ${data.empresa}` : null,
-      `Tipo de proyecto: ${data.tipo}`,
-      `Presupuesto: ${data.presupuesto}`,
-      data.plazo ? `Plazo: ${data.plazo}` : null,
+      `${t("brief.lblName")}: ${data.nombre}`,
+      `${t("brief.lblEmail")}: ${data.email}`,
+      data.empresa ? `${t("brief.lblCompany")}: ${data.empresa}` : null,
+      `${t("brief.lblType")}: ${CONTACT_TYPES[lang][data.tipo]}`,
+      `${t("brief.lblBudget")}: ${CONTACT_BUDGETS[lang][data.presupuesto]}`,
+      data.plazo ? `${t("brief.lblDeadline")}: ${data.plazo}` : null,
       "",
-      "Proyecto:",
+      t("brief.lblProject"),
       data.mensaje,
     ]
       .filter((l) => l !== null)
@@ -107,95 +97,90 @@ export default function ContactModal({ open, onClose }) {
         className="modal modal--form"
         role="dialog"
         aria-modal="true"
-        aria-label="Trabajemos juntos"
+        aria-label={t("contact.eyebrow")}
         onClick={(e) => e.stopPropagation()}
       >
         <button
           type="button"
           className="modal__close"
           onClick={onClose}
-          aria-label="Cerrar"
+          aria-label={t("contact.close")}
         >
           ×
         </button>
 
         <div className="modal__body">
-          <span className="modal__cat">Trabajemos juntos</span>
-          <h2 className="modal__title">Contanos de tu proyecto</h2>
+          <span className="modal__cat">{t("contact.eyebrow")}</span>
+          <h2 className="modal__title">{t("contact.title")}</h2>
 
           {sent ? (
             <div className="brief-sent">
               <p className="modal__text">
-                ¡Gracias! Se abrió tu cliente de correo con el brief listo para
-                enviar. Si no se abrió, escribinos directo a{" "}
+                {t("contact.sentText")}
                 <a className="brief-link" href={STUDIO.social.mail}>
                   {to}
                 </a>
                 .
               </p>
-              <button
-                type="button"
-                className="contact-btn"
-                onClick={onClose}
-              >
-                Cerrar
+              <button type="button" className="contact-btn" onClick={onClose}>
+                {t("contact.close")}
               </button>
             </div>
           ) : (
             <form className="brief-form" onSubmit={handleSubmit}>
               <div className="brief-form__row">
                 <label className="brief-field">
-                  <span>Nombre *</span>
+                  <span>{t("contact.name")}</span>
                   <input
                     type="text"
                     required
                     value={data.nombre}
                     onChange={update("nombre")}
-                    placeholder="Tu nombre"
+                    placeholder={t("contact.namePh")}
                   />
                 </label>
                 <label className="brief-field">
-                  <span>Email *</span>
+                  <span>{t("contact.email")}</span>
                   <input
                     type="email"
                     required
                     value={data.email}
                     onChange={update("email")}
-                    placeholder="tu@email.com"
+                    placeholder={t("contact.emailPh")}
                   />
                 </label>
               </div>
 
               <label className="brief-field">
-                <span>Empresa / marca</span>
+                <span>{t("contact.company")}</span>
                 <input
                   type="text"
                   value={data.empresa}
                   onChange={update("empresa")}
-                  placeholder="Opcional"
+                  placeholder={t("contact.companyPh")}
                 />
               </label>
 
               <div className="brief-form__row">
                 <label className="brief-field">
-                  <span>Tipo de proyecto</span>
+                  <span>{t("contact.type")}</span>
                   <select value={data.tipo} onChange={update("tipo")}>
-                    {TIPOS.map((t) => (
-                      <option key={t} value={t}>
-                        {t}
+                    {CONTACT_TYPES[lang].map((label, i) => (
+                      <option key={i} value={i}>
+                        {label}
                       </option>
                     ))}
                   </select>
                 </label>
                 <label className="brief-field">
-                  <span>Presupuesto</span>
+                  <span>{t("contact.budget")}</span>
                   <select
                     value={data.presupuesto}
                     onChange={update("presupuesto")}
                   >
-                    {PRESUPUESTOS.map((p) => (
-                      <option key={p} value={p}>
-                        {p}
+                    {CONTACT_BUDGETS[lang].map((label, i) => (
+                      <option key={i} value={i}>
+                        {label}
                       </option>
                     ))}
                   </select>
@@ -203,32 +188,32 @@ export default function ContactModal({ open, onClose }) {
               </div>
 
               <label className="brief-field">
-                <span>Plazo estimado</span>
+                <span>{t("contact.deadline")}</span>
                 <input
                   type="text"
                   value={data.plazo}
                   onChange={update("plazo")}
-                  placeholder="Ej: 3 semanas, para fin de mes…"
+                  placeholder={t("contact.deadlinePh")}
                 />
               </label>
 
               <label className="brief-field">
-                <span>Contanos del proyecto *</span>
+                <span>{t("contact.message")}</span>
                 <textarea
                   required
                   rows={4}
                   value={data.mensaje}
                   onChange={update("mensaje")}
-                  placeholder="¿Qué necesitás? Objetivo, referencias, entregables…"
+                  placeholder={t("contact.messagePh")}
                 />
               </label>
 
               <div className="brief-form__actions">
                 <button type="submit" className="contact-btn contact-btn--solid">
-                  Enviar brief
+                  {t("contact.submit")}
                 </button>
                 <a className="brief-link" href={STUDIO.social.mail}>
-                  o escribinos a {to}
+                  {t("contact.orWrite", { mail: to })}
                 </a>
               </div>
             </form>

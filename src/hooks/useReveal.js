@@ -13,8 +13,12 @@ export function useReveal(dep, options = {}) {
     sectionSelector = ".section",
     staggerDelay = 100,
     visibleClass = "visible",
-    threshold = 0.15,
-    rootMargin = "0px 0px -10% 0px",
+    // threshold 0 = fire as soon as any pixel of the section is visible.
+    // A fractional threshold (e.g. 0.15) never triggers on mobile, where a
+    // single-column section is far taller than the viewport, so 15% of it can
+    // never be on screen at once — which left pages blank until scrolled.
+    threshold = 0,
+    rootMargin = "0px 0px -40px 0px",
   } = options;
 
   useEffect(() => {

@@ -1,7 +1,9 @@
 import { useEffect } from "react";
+import { useLanguage, L } from "../i18n/LanguageContext.jsx";
 
 // Modal with project detail. Closes on backdrop click, the × button, or Escape.
 export default function ProjectModal({ project, onClose }) {
+  const { lang, t } = useLanguage();
   useEffect(() => {
     if (!project) return;
 
@@ -23,6 +25,9 @@ export default function ProjectModal({ project, onClose }) {
   if (!project) return null;
 
   const accent = project.accent || "#efefef";
+  // descripcion / tags are { es, en } objects; resolve to the active array.
+  const descripcion = L(project.descripcion, lang) || [];
+  const tags = L(project.tags, lang) || [];
 
   return (
     <div className="modal-backdrop" onClick={onClose}>
@@ -37,7 +42,7 @@ export default function ProjectModal({ project, onClose }) {
           type="button"
           className="modal__close"
           onClick={onClose}
-          aria-label="Cerrar"
+          aria-label={t("contact.close")}
         >
           ×
         </button>
@@ -53,25 +58,25 @@ export default function ProjectModal({ project, onClose }) {
         </div>
 
         <div className="modal__body">
-          <span className="modal__cat">{project.categoria}</span>
+          <span className="modal__cat">{L(project.categoria, lang)}</span>
           <h2 className="modal__title">{project.titulo}</h2>
 
           <div className="modal__meta">
-            {project.cliente ? <span>{project.cliente}</span> : null}
+            {project.cliente ? <span>{L(project.cliente, lang)}</span> : null}
             {project.anio ? <span>{project.anio}</span> : null}
           </div>
 
-          {project.descripcion.map((para, i) => (
+          {descripcion.map((para, i) => (
             <p className="modal__text" key={i}>
               {para}
             </p>
           ))}
 
-          {project.tags?.length ? (
+          {tags.length ? (
             <div className="modal__tags">
-              {project.tags.map((t) => (
-                <span className="modal__tag" key={t}>
-                  {t}
+              {tags.map((tag, i) => (
+                <span className="modal__tag" key={i}>
+                  {tag}
                 </span>
               ))}
             </div>
@@ -79,18 +84,18 @@ export default function ProjectModal({ project, onClose }) {
 
           {project.links?.length ? (
             <div className="modal__links">
-              {project.links.map((l) => {
+              {project.links.map((l, i) => {
                 const external = l.url.startsWith("http");
                 return (
                   <a
-                    key={l.label}
+                    key={i}
                     className="contact-btn"
                     href={l.url}
                     {...(external
                       ? { target: "_blank", rel: "noopener noreferrer" }
                       : {})}
                   >
-                    {l.label}
+                    {L(l.label, lang)}
                   </a>
                 );
               })}
