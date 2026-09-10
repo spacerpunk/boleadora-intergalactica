@@ -1,0 +1,63 @@
+export const SERVICES = [
+  {
+    id: "postproduccion",
+    number: "01",
+    label: "Postproducción",
+    short: "POST",
+    title: ["De buen material", "a algo brutal."],
+    description:
+      "Le damos forma, ritmo y carácter a tu proyecto. Imagen y sonido trabajando juntos para que cada segundo cuente.",
+    disciplines: [
+      "VFX & compositing",
+      "Edición de video",
+      "Motion graphics",
+      "3D & animación",
+      "Edición de audio",
+      "Música original",
+      "Sound design & foley",
+    ],
+    cta: "Démosle forma a tu proyecto",
+    form: "Postproducción",
+    note: "IMAGEN + SONIDO + MUCHO OFICIO",
+  },
+  {
+    id: "creatividad",
+    number: "02",
+    label: "Creatividad",
+    short: "IDEA",
+    title: ["Primero,", "la buena idea."],
+    description:
+      "Encontramos eso que hace única a tu marca y lo convertimos en una historia que vale la pena mirar. Del primer «¿y si…?» al último storyboard.",
+    disciplines: [
+      "Conceptos creativos",
+      "Films & campañas",
+      "Estrategia de contenido",
+      "Guiones",
+      "Dirección de arte",
+      "Storyboards & animatics",
+    ],
+    cta: "Pensemos tu próxima campaña",
+    form: "Creatividad",
+    note: "DEL PAPEL A LO IMPOSIBLE",
+  },
+  {
+    id: "ai-production",
+    number: "03",
+    label: "AI Production Solutions",
+    short: "AI",
+    title: ["Más posibilidades.", "Menos límites."],
+    description:
+      "Conectamos creatividad y tecnología para producir distinto. Integramos IA a tu proceso y construimos herramientas que resuelven lo que tu equipo necesita.",
+    disciplines: [
+      "Pipelines con IA",
+      "Generación de imagen & video",
+      "Assets generativos",
+      "Apps & herramientas a medida",
+      "Automatización de producción",
+      "Integración & consultoría",
+    ],
+    cta: "Exploremos qué podemos hacer",
+    form: "AI Production Solutions",
+    note: "INTELIGENCIA ARTIFICIAL. CRITERIO HUMANO.",
+  },
+];

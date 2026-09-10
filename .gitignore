@@ -13,3 +13,4 @@ Thumbs.db
 # logs
 npm-debug.log*
 *.local
+tmp/

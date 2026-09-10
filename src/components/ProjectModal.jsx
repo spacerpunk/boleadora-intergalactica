@@ -1,103 +1,54 @@
-import { useEffect } from "react";
-
-// Modal with project detail. Closes on backdrop click, the × button, or Escape.
+import Dialog from "./Dialog.jsx";
 export default function ProjectModal({ project, onClose }) {
-  useEffect(() => {
-    if (!project) return;
-
-    const onKey = (e) => {
-      if (e.key === "Escape") onClose();
-    };
-    document.addEventListener("keydown", onKey);
-
-    // Lock body scroll while the modal is open.
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prevOverflow;
-    };
-  }, [project, onClose]);
-
-  if (!project) return null;
-
-  const accent = project.accent || "#efefef";
-
   return (
-    <div className="modal-backdrop" onClick={onClose}>
-      <div
-        className="modal"
-        role="dialog"
-        aria-modal="true"
-        aria-label={project.titulo}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
-          type="button"
-          className="modal__close"
-          onClick={onClose}
-          aria-label="Cerrar"
-        >
-          ×
-        </button>
-
-        <div className="modal__media" style={{ "--accent": accent }}>
-          {project.cover ? (
-            <img src={project.cover} alt={project.titulo} />
-          ) : (
-            <div className="modal__placeholder">
-              <span>{project.titulo}</span>
-            </div>
+    <Dialog
+      open={!!project}
+      onClose={onClose}
+      label={project?.titulo || "Proyecto"}
+      className="project-dialog"
+    >
+      {project && (
+        <>
+          {project.cover && (
+            <img
+              className="project-detail-cover"
+              src={project.cover}
+              alt={project.titulo}
+            />
           )}
-        </div>
-
-        <div className="modal__body">
-          <span className="modal__cat">{project.categoria}</span>
-          <h2 className="modal__title">{project.titulo}</h2>
-
-          <div className="modal__meta">
-            {project.cliente ? <span>{project.cliente}</span> : null}
-            {project.anio ? <span>{project.anio}</span> : null}
-          </div>
-
-          {project.descripcion.map((para, i) => (
-            <p className="modal__text" key={i}>
-              {para}
-            </p>
-          ))}
-
-          {project.tags?.length ? (
-            <div className="modal__tags">
-              {project.tags.map((t) => (
-                <span className="modal__tag" key={t}>
-                  {t}
-                </span>
+          <div className="project-detail">
+            <span className="mono orange">{project.categoria}</span>
+            <h2>{project.titulo}</h2>
+            <div className="project-meta mono">
+              <span>{project.cliente}</span>
+              <span>{project.anio}</span>
+            </div>
+            {project.descripcion.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+            <div className="project-tags">
+              {project.tags?.map((t) => (
+                <span key={t}>{t}</span>
               ))}
             </div>
-          ) : null}
-
-          {project.links?.length ? (
-            <div className="modal__links">
-              {project.links.map((l) => {
-                const external = l.url.startsWith("http");
-                return (
+            <div className="project-links">
+              {project.links
+                ?.filter((l) => l.url && l.url !== "#")
+                .map((l) => (
                   <a
+                    className="text-link"
                     key={l.label}
-                    className="contact-btn"
                     href={l.url}
-                    {...(external
-                      ? { target: "_blank", rel: "noopener noreferrer" }
-                      : {})}
+                    target={l.url.startsWith("http") ? "_blank" : undefined}
+                    rel="noreferrer"
                   >
-                    {l.label}
+                    {l.label} ↗
                   </a>
-                );
-              })}
+                ))}
             </div>
-          ) : null}
-        </div>
-      </div>
-    </div>
+          </div>
+        </>
+      )}
+    </Dialog>
   );
 }

@@ -1,61 +1,78 @@
-import { Link } from "react-router-dom";
-import { LOGO_SVG, SOCIAL_ICONS } from "../assets/svg.js";
-import { STUDIO } from "../config.js";
-import RawSvg from "./RawSvg.jsx";
-import ThemeToggle from "./ThemeToggle.jsx";
-
-/**
- * Shared navbar.
- * @param {Array<{label:string, to?:string, href?:string, muted?:boolean}>} nav
- * @param {Object} social  map of social keys -> href (defaults to studio)
- */
-export default function Navbar({ nav, social = STUDIO.social }) {
-  const items =
-    nav || [
-      { label: "Equipo", href: "/#equipo" },
-      { label: "Contacto", href: "/#contacto", muted: true },
-    ];
-
+import { useEffect, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { useMotion } from "./MotionProvider.jsx";
+export function StudioMark() {
   return (
-    <div id="navbar">
-      <ul id="navbar__navigation">
-        {items.map((n) => (
-          <li key={n.label} className={n.muted ? "muted" : undefined}>
-            {n.to ? (
-              <Link to={n.to}>{n.label}</Link>
-            ) : (
-              <a href={n.href}>{n.label}</a>
-            )}
-          </li>
-        ))}
-      </ul>
-
-      <Link id="navbar__logo" to="/" aria-label="Inicio">
-        <RawSvg html={LOGO_SVG} />
+    <span className="studio-mark" aria-hidden="true">
+      ✳
+    </span>
+  );
+}
+export default function Navbar() {
+  const [open, setOpen] = useState(false);
+  const { pathname } = useLocation();
+  const { motion, reduced, toggle } = useMotion();
+  const motionLabel = reduced
+    ? "Animaciones desactivadas por preferencia del sistema"
+    : motion
+      ? "Pausar animaciones"
+      : "Activar animaciones";
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+  return (
+    <header className="studio-nav">
+      <Link className="studio-brand" to="/" aria-label="Ruido de Mate — Inicio">
+        <StudioMark />
+        <span>
+          ruido
+          <br />
+          de mate<span className="brand-dot">®</span>
+        </span>
       </Link>
-
-      <div id="navbar__rrss">
-        <ThemeToggle />
-        {Object.keys(social)
-          .filter((key) => SOCIAL_ICONS[key])
-          .map((key) => {
-          const href = social[key] || "#";
-          const external = href.startsWith("http");
-          return (
-            <a
-              key={key}
-              className="navbar__rrss__icon"
-              href={href}
-              aria-label={key}
-              {...(external
-                ? { target: "_blank", rel: "noopener noreferrer" }
-                : {})}
-            >
-              <RawSvg html={SOCIAL_ICONS[key]} />
-            </a>
-          );
-        })}
-      </div>
-    </div>
+      <span className="nav-descriptor mono">
+        ESTUDIO CREATIVO
+        <br />
+        BUENOS AIRES ↗ MUNDO
+      </span>
+      <button
+        className="menu-toggle mono"
+        aria-expanded={open}
+        aria-controls="studio-navigation"
+        onClick={() => setOpen(!open)}
+      >
+        {open ? "CERRAR −" : "MENÚ +"}
+      </button>
+      <nav
+        id="studio-navigation"
+        className={open ? "nav-links is-open" : "nav-links"}
+        aria-label="Navegación principal"
+        onKeyDown={(e) => {
+          if (e.key === "Escape") setOpen(false);
+        }}
+      >
+        <Link to="/#servicios" onClick={() => setOpen(false)}>
+          Servicios
+        </Link>
+        <NavLink to="/nosotros">Nosotros</NavLink>
+        <NavLink to="/portfolio">Portfolio</NavLink>
+        <Link
+          className="nav-contact"
+          to="/#contacto"
+          onClick={() => setOpen(false)}
+        >
+          Hablemos <span>↗</span>
+        </Link>
+      </nav>
+      <button
+        className="motion-toggle"
+        onClick={toggle}
+        disabled={reduced}
+        aria-label={motionLabel}
+        title={motionLabel}
+      >
+        {motion ? "Ⅱ" : "▷"}
+      </button>
+    </header>
   );
 }

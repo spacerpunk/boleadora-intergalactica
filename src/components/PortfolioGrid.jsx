@@ -2,13 +2,15 @@ import { useState } from "react";
 import ProjectCard from "./ProjectCard.jsx";
 import ProjectModal from "./ProjectModal.jsx";
 
-export default function PortfolioGrid({ projects }) {
+export default function PortfolioGrid({ projects, filtered = false }) {
   const [selected, setSelected] = useState(null);
 
   if (!projects.length) {
     return (
       <p className="paragraph reveal">
-        Todavía no hay proyectos cargados. ¡Muy pronto!
+        {filtered
+          ? "No hay proyectos en esta categoría. Probá otro filtro."
+          : "Todavía no hay proyectos cargados. ¡Muy pronto!"}
       </p>
     );
   }
