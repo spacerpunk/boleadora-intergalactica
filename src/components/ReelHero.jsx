@@ -39,7 +39,6 @@ export default function ReelHero() {
           {failed && <img src="/media/reel-poster.jpg" alt="" />}
         </div>
         <div className="hero-shade" />
-        <div className="hero-grid" aria-hidden="true" />
         <div className="hero-topline mono">
           <span>
             <i className="status-dot" /> INDEPENDENT CREATIVE STUDIO
@@ -47,9 +46,6 @@ export default function ReelHero() {
           <span>IDEAS QUE SE VEN. RUIDO QUE SE SIENTE.</span>
         </div>
         <div className="hero-center">
-          <span className="hero-coordinate mono">
-            [ PLAY LOUD. THINK BIG. ]
-          </span>
           <button
             className="reel-open"
             onClick={() => setOpen(true)}

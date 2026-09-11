@@ -19,6 +19,7 @@ export const SERVICES = [
     cta: "Démosle forma a tu proyecto",
     form: "Postproducción",
     note: "IMAGEN + SONIDO + MUCHO OFICIO",
+    art: ["/imgs/projects/nico-nasaxhonda.jpg", "/imgs/projects/nico-dove.jpg"],
   },
   {
     id: "creatividad",
@@ -39,6 +40,7 @@ export const SERVICES = [
     cta: "Pensemos tu próxima campaña",
     form: "Creatividad",
     note: "DEL PAPEL A LO IMPOSIBLE",
+    art: ["/imgs/projects/nico-toyota-team23.jpg", "/imgs/projects/mati-genius.jpg"],
   },
   {
     id: "ai-production",
@@ -59,5 +61,6 @@ export const SERVICES = [
     cta: "Exploremos qué podemos hacer",
     form: "AI Production Solutions",
     note: "INTELIGENCIA ARTIFICIAL. CRITERIO HUMANO.",
+    art: ["/imgs/projects/nico-agentic-monks.gif", "/imgs/projects/nico-tungsteno.jpg"],
   },
 ];

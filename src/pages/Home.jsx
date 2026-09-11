@@ -64,48 +64,6 @@ export default function Home() {
             onContact={setContact}
           />
         ))}
-        <section className="working-together">
-          <div className="section-kicker mono">
-            <span>[ CÓMO TRABAJAMOS ]</span>
-            <span>DEL PRIMER MATE AL ÚLTIMO EXPORT.</span>
-          </div>
-          <div className="process-heading">
-            <h2>
-              Nos metemos
-              <br />
-              en tu proyecto.
-            </h2>
-            <p>
-              Una pieza puntual o una producción de punta a punta. Armamos el
-              equipo y el proceso alrededor de lo que necesitás.
-            </p>
-          </div>
-          <div className="process-grid">
-            {[
-              [
-                "01",
-                "Nos contás.",
-                "Escuchamos tu desafío, tus referencias y a dónde querés llegar.",
-              ],
-              [
-                "02",
-                "Lo pensamos.",
-                "Bajamos una propuesta creativa, un alcance y una forma de trabajar.",
-              ],
-              [
-                "03",
-                "Lo hacemos.",
-                "Producimos, probamos y pulimos juntos. Hasta el último detalle.",
-              ],
-            ].map(([num, title, text]) => (
-              <div key={num}>
-                <span className="mono">[ {num} ]</span>
-                <h3>{title}</h3>
-                <p>{text}</p>
-              </div>
-            ))}
-          </div>
-        </section>
         <section className="studio-bridges">
           <Link to="/portfolio">
             <img
