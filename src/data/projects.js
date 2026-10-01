@@ -849,7 +849,10 @@ export const PROJECTS = [
   },
   {
     id: "santi-tasso",
-    titulo: "Website de Santiago Tasso",
+    titulo: {
+      es: "Website de Santiago Tasso",
+      en: "Santiago Tasso's website",
+    },
     categoria: { es: "Web · Diseño Responsive", en: "Web · Responsive Design" },
     cliente: "Santiago Tasso",
     anio: "2022",

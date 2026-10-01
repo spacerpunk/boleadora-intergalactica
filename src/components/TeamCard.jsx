@@ -1,25 +1,34 @@
 import { Link } from "react-router-dom";
 import { useLanguage, L } from "../i18n/LanguageContext.jsx";
-
 export default function TeamCard({ member }) {
   const { lang, t } = useLanguage();
   return (
     <Link
-      className="team-card reveal"
+      className={`team-card team-card--${member.id}`}
       to={`/profile/${member.id}`}
-      style={{ "--accent": member.accent }}
     >
       <div className="team-card__media">
         <img
+          className="portrait-original"
           src={member.portrait}
-          alt={t("profile.portraitAlt", { name: member.nombreCompleto })}
+          alt={t("team.portraitAlt", { name: member.nombreCompleto })}
+          loading="lazy"
         />
+        <img
+          className="portrait-alternate"
+          src={`/imgs/alter-egos/${member.id}.webp`}
+          alt=""
+          loading="lazy"
+        />
+        <span className="portrait-label mono">
+          {t("team.human")} <span>{t("team.alter")}</span>
+        </span>
+        <span className="portrait-arrow">↗</span>
       </div>
       <div className="team-card__body">
-        <span className="team-card__tag">{L(member.tagline, lang)}</span>
-        <h3 className="team-card__name">{member.nombre}</h3>
-        <p className="team-card__role">{L(member.rol, lang)}</p>
-        <span className="team-card__cta">{t("team.viewProfile")}</span>
+        <span className="mono">{L(member.tagline, lang)}</span>
+        <h3>{member.nombreCompleto}</h3>
+        <p>{L(member.rol, lang)}</p>
       </div>
     </Link>
   );

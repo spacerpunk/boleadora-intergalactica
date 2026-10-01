@@ -1,77 +1,92 @@
 import { useEffect, useState } from "react";
-import { TEAM } from "../data/team.js";
-import { STUDIO } from "../config.js";
-import { useLanguage } from "../i18n/LanguageContext.jsx";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
-import TeamCard from "../components/TeamCard.jsx";
-import FeaturedWorks from "../components/FeaturedWorks.jsx";
+import ReelHero from "../components/ReelHero.jsx";
+import PillarSection from "../components/PillarSection.jsx";
 import ContactModal from "../components/ContactModal.jsx";
-import { useReveal } from "../hooks/useReveal.js";
-
+import { SERVICES } from "../data/services.js";
+import { STUDIO } from "../config.js";
+import { useLanguage } from "../i18n/LanguageContext.jsx";
 export default function Home() {
+  const [contact, setContact] = useState(null);
   const { t } = useLanguage();
-  useReveal("home");
-  const [contactOpen, setContactOpen] = useState(false);
-
   useEffect(() => {
-    document.title = `${STUDIO.nombre} — ${t("home.docTitle")}`;
+    document.title = t("home.docTitle");
   }, [t]);
-
-  const mailto = STUDIO.social.mail;
-
   return (
     <>
-      <Navbar
-        nav={[
-          { label: t("nav.trabajos"), href: "#trabajos" },
-          { label: t("nav.equipo"), href: "#equipo" },
-          { label: t("nav.portfolio"), to: "/portfolio", muted: true },
-        ]}
-        social={STUDIO.social}
-      />
-
-      <main>
-        <header id="hero" className="section">
-          <div id="hero__text">
-            <span className="hero__eyebrow reveal">{t("home.eyebrow")}</span>
-            <h1 className="reveal">{STUDIO.nombre}</h1>
-            <p className="paragraph reveal">{t("home.heroText")}</p>
+      <Navbar />
+      <main id="top">
+        <ReelHero />
+        <section
+          id="manifiesto"
+          className="manifesto"
+          aria-labelledby="manifesto-heading"
+        >
+          <div className="section-kicker mono">
+            <span>{t("home.who")}</span>
+            <span>{t("home.fromSet")}</span>
           </div>
-        </header>
-
-        <FeaturedWorks />
-
-        <section id="equipo" className="section">
-          <h2 className="reveal">{t("home.teamTitle")}</h2>
-          <div id="team-grid">
-            {TEAM.map((member) => (
-              <TeamCard key={member.id} member={member} />
-            ))}
+          <div className="manifesto-grid">
+            <span className="manifesto-star" aria-hidden="true">
+              ✳
+            </span>
+            <div>
+              <h2 id="manifesto-heading">
+                {t("home.manifesto1")}
+                <br />
+                {t("home.manifesto2")} <em>{t("home.manifesto3")}</em>
+              </h2>
+              <p>{t("home.manifestoText")}</p>
+            </div>
+          </div>
+          <div className="manifesto-bottom mono">
+            <span>{t("home.niche")}</span>
+            <span>{t("home.team")}</span>
           </div>
         </section>
-
-        <section id="contacto" className="section">
-          <h2 className="reveal">{t("home.contactTitle")}</h2>
-          <p className="paragraph reveal">{t("home.contactText")}</p>
-          <div className="contact-actions reveal">
+        {SERVICES.map((service) => (
+          <PillarSection
+            key={service.id}
+            service={service}
+            total={SERVICES.length}
+            onContact={setContact}
+          />
+        ))}
+        <section id="contacto" className="contact-section">
+          <div className="section-kicker mono">
+            <span>{t("home.nextCampaign")}</span>
+            <span>BA ↗ WORLDWIDE</span>
+          </div>
+          <button
+            className="contact-headline"
+            onClick={() => setContact("full")}
+          >
+            {t("home.contact1")}
+            <br />
+            <span>{t("home.contact2")}</span>
+            <span className="contact-arrow">↗</span>
+          </button>
+          <div className="contact-bottom">
+            <p>{t("home.contactText")}</p>
             <button
-              type="button"
-              className="contact-btn contact-btn--solid"
-              onClick={() => setContactOpen(true)}
+              className="solid-button"
+              onClick={() => setContact("full")}
             >
-              {t("home.contactCta")}
+              {t("home.contactCta")} <span>↗</span>
             </button>
-            <a className="contact-btn" href={mailto}>
-              {mailto.replace("mailto:", "")}
+            <a className="mono" href={STUDIO.social.mail}>
+              {t("home.contactMail")}
             </a>
           </div>
         </section>
       </main>
-
-      <Footer name={STUDIO.copyright} />
-
-      <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
+      <Footer />
+      <ContactModal
+        open={contact !== null}
+        initialType={contact}
+        onClose={() => setContact(null)}
+      />
     </>
   );
 }

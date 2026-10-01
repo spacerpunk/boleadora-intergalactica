@@ -1,14 +1,18 @@
 import { useState } from "react";
-import { useLanguage } from "../i18n/LanguageContext.jsx";
 import ProjectCard from "./ProjectCard.jsx";
 import ProjectModal from "./ProjectModal.jsx";
+import { useLanguage } from "../i18n/LanguageContext.jsx";
 
-export default function PortfolioGrid({ projects }) {
-  const { t } = useLanguage();
+export default function PortfolioGrid({ projects, filtered = false }) {
   const [selected, setSelected] = useState(null);
+  const { t } = useLanguage();
 
   if (!projects.length) {
-    return <p className="paragraph reveal">{t("portfolio.empty")}</p>;
+    return (
+      <p className="paragraph reveal">
+        {t(filtered ? "portfolio.emptyFiltered" : "portfolio.empty")}
+      </p>
+    );
   }
 
   return (

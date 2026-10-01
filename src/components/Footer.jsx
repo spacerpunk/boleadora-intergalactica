@@ -1,23 +1,28 @@
-import { WORDMARK_SVG } from "../assets/svg.js";
+import { Link } from "react-router-dom";
 import { STUDIO } from "../config.js";
 import { useLanguage } from "../i18n/LanguageContext.jsx";
-import RawSvg from "./RawSvg.jsx";
-
-export default function Footer({ name = STUDIO.copyright }) {
+export default function Footer() {
   const { t } = useLanguage();
-  const year = new Date().getFullYear();
   return (
-    <footer>
-      <div className="footer__separator"></div>
-      <div className="footer__section">
-        <p>
-          2024 – {year} | {name}
-          <br />
-          {t("footer.rights")}
-        </p>
-        <div id="footer__logo">
-          <RawSvg html={WORDMARK_SVG} />
-        </div>
+    <footer className="studio-footer">
+      <div className="footer-top mono">
+        <span>{t("footer.line")}</span>
+        <a href="#top">{t("footer.top")}</a>
+      </div>
+      <Link
+        to="/"
+        className="footer-wordmark"
+        aria-label={t("footer.homeAria")}
+      >
+        ruido de mate<span>®</span>
+      </Link>
+      <div className="footer-bottom mono">
+        <span>© {new Date().getFullYear()} RUIDO DE MATE</span>
+        <span>AI ADVERTISING STUDIO · BUENOS AIRES</span>
+        <a href={STUDIO.social.instagram} target="_blank" rel="noreferrer">
+          INSTAGRAM ↗
+        </a>
+        <a href={STUDIO.social.mail}>EMAIL ↗</a>
       </div>
     </footer>
   );
