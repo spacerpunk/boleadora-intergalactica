@@ -6,10 +6,10 @@
   border-top: 1px solid var(--line);
 }
 .pillar--films-ia {
-  background: #161513;
+  background: var(--surface);
 }
 .pillar--ugc-agentes {
-  background: var(--surface);
+  background: var(--bg);
 }
 .pillar-head {
   display: grid;
@@ -20,8 +20,11 @@
 }
 .pillar-head > .mono {
   grid-column: 1 / -1;
+  justify-self: start;
   margin-bottom: 18px;
-  color: var(--orange);
+  padding: 3px 9px;
+  background: var(--sol);
+  color: var(--ink);
 }
 .pillar-head h2 {
   grid-column: 1 / -1;
@@ -84,13 +87,13 @@
 .option-chips button:hover,
 .model-pick:hover {
   border-color: var(--muted);
-  color: var(--paper);
+  color: var(--ink);
 }
 .option-chips button[aria-pressed="true"],
 .model-pick[aria-pressed="true"] {
-  border-color: var(--orange);
-  background: #74b4dc1f;
-  color: var(--paper);
+  border-color: var(--celeste);
+  background: #74acdf33;
+  color: var(--ink);
 }
 .swatch {
   display: inline-block;
@@ -98,7 +101,7 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  border: 1px solid #ffffff26;
+  border: 1px solid #0b1f3a26;
 }
 
 /* 01 — digital clone: one product, many situations */
@@ -125,14 +128,14 @@
   margin: 0 auto;
   overflow: hidden;
   background: #f1efe9;
-  box-shadow: 0 30px 70px #00000066;
+  box-shadow: 0 30px 70px #0b1f3a2e;
 }
 .clone-stage.is-spinnable {
   cursor: ew-resize;
   touch-action: pan-y;
 }
 .clone-stage:focus-visible {
-  outline: 2px solid var(--orange);
+  outline: 2px solid var(--celeste-ink);
   outline-offset: 4px;
 }
 .clone-stage img {
@@ -194,8 +197,8 @@
   left: 12px;
   bottom: 12px;
   padding: 5px 8px;
-  background: #000000a0;
-  color: var(--paper);
+  background: #ffffffe6;
+  color: var(--ink);
   font-size: 12px;
   text-transform: uppercase;
   pointer-events: none;
@@ -242,12 +245,12 @@
   border-color: var(--muted);
 }
 .scene-pick[aria-pressed="true"] {
-  color: var(--paper);
+  color: var(--ink);
 }
 .scene-pick[aria-pressed="true"] img {
   opacity: 1;
-  border-color: var(--orange);
-  box-shadow: 0 0 0 1px var(--orange);
+  border-color: var(--celeste);
+  box-shadow: 0 0 0 1px var(--celeste);
 }
 .clone-ugc > div {
   display: grid;
@@ -267,7 +270,7 @@
   border-color: var(--muted);
 }
 .ugc-clip[aria-pressed="true"] {
-  border-color: var(--orange);
+  border-color: var(--celeste);
 }
 .ugc-clip video {
   display: block;
@@ -280,8 +283,8 @@
   left: 8px;
   bottom: 8px;
   padding: 4px 7px;
-  background: #000000a0;
-  color: var(--paper);
+  background: #ffffffe6;
+  color: var(--ink);
   font-size: 12px;
 }
 
@@ -300,7 +303,7 @@
   user-select: none;
 }
 .grade-frame:has(.grade-range:focus-visible) {
-  outline: 2px solid var(--orange);
+  outline: 2px solid var(--celeste-ink);
   outline-offset: 5px;
 }
 .grade-frame img {
@@ -419,7 +422,7 @@
   left: var(--split);
   width: 2px;
   transform: translateX(-1px);
-  background: var(--paper);
+  background: #ffffff;
   pointer-events: none;
 }
 .grade-divider > span {
@@ -430,8 +433,8 @@
   height: 44px;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  background: var(--paper);
-  color: var(--bg);
+  background: #ffffff;
+  color: var(--ink);
   display: grid;
   place-items: center;
   font-size: 18px;
@@ -441,8 +444,8 @@
   position: absolute;
   top: 14px;
   padding: 5px 8px;
-  background: #000000a6;
-  color: var(--paper);
+  background: #ffffffe6;
+  color: var(--ink);
   font-size: 12px;
   pointer-events: none;
 }
@@ -494,11 +497,11 @@
   opacity: 0.8;
 }
 .film-picks button[aria-pressed="true"] {
-  color: var(--paper);
+  color: var(--ink);
 }
 .film-picks button[aria-pressed="true"] img {
   opacity: 1;
-  outline: 1px solid var(--orange);
+  outline: 1px solid var(--celeste-ink);
   outline-offset: 4px;
 }
 .film-picks a {
@@ -507,7 +510,7 @@
   transition: color 0.2s;
 }
 .film-picks a:hover {
-  color: var(--orange);
+  color: var(--celeste-ink);
 }
 
 /* 03 — synthetic UGC: model × action → post */
@@ -560,7 +563,7 @@
 .model-pick strong {
   font-size: 15px;
   font-weight: 500;
-  color: var(--paper);
+  color: var(--ink);
 }
 .model-pick small {
   font-size: 9px;
