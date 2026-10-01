@@ -3,9 +3,11 @@ import { useParams, Navigate, Link } from "react-router-dom";
 import { getMember } from "../data/team.js";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
+import { useLanguage, L } from "../i18n/LanguageContext.jsx";
 export default function Profile() {
   const { id } = useParams();
   const member = getMember(id);
+  const { lang, t } = useLanguage();
   useEffect(() => {
     if (member) document.title = `${member.nombreCompleto} — Ruido de Mate`;
   }, [member]);
@@ -15,22 +17,22 @@ export default function Profile() {
       <Navbar />
       <main id="top" className="profile-page">
         <Link className="back-link mono" to="/nosotros">
-          ← VOLVER AL EQUIPO
+          {t("profile.back")}
         </Link>
         <section className="profile-intro">
           <div>
-            <span className="mono orange">[ {member.tagline} ]</span>
+            <span className="mono orange">[ {L(member.tagline, lang)} ]</span>
             <h1>{member.nombreCompleto}</h1>
-            <h2>{member.rol}</h2>
-            {member.bio.map((p, i) => (
+            <h2>{L(member.rol, lang)}</h2>
+            {L(member.bio, lang).map((p, i) => (
               <p key={i}>{p}</p>
             ))}
             <div className="profile-actions">
               <Link className="solid-button" to={`/portfolio/${member.id}`}>
-                Ver trabajos ↗
+                {t("profile.viewWork")}
               </Link>
               <a className="text-link" href={`mailto:${member.email}`}>
-                Contacto ↗
+                {t("profile.contact")}
               </a>
             </div>
           </div>
@@ -42,36 +44,36 @@ export default function Profile() {
         </section>
         <section className="profile-details">
           <div>
-            <h2>Trayectoria</h2>
+            <h2>{t("profile.trayectoria")}</h2>
             <ul>
-              {member.trayectoria.map((t, i) => (
+              {member.trayectoria.map((item, i) => (
                 <li key={i}>
-                  {t.puesto}
-                  <span className="mono">{t.periodo}</span>
+                  {L(item.puesto, lang)}
+                  <span className="mono">{L(item.periodo, lang)}</span>
                 </li>
               ))}
             </ul>
           </div>
           <div>
-            <h2>Formación</h2>
+            <h2>{t("profile.formacion")}</h2>
             <ul>
               {[...member.estudios.izquierda, ...member.estudios.derecha].map(
-                (t, i) => (
+                (item, i) => (
                   <li key={i}>
-                    {t.texto}
-                    <span className="mono">{t.periodo}</span>
+                    {L(item.texto, lang)}
+                    <span className="mono">{L(item.periodo, lang)}</span>
                   </li>
                 ),
               )}
             </ul>
-            <h2>Herramientas</h2>
+            <h2>{t("profile.herramientas")}</h2>
             <div className="project-tags">
-              {member.herramientas.map((t) => (
-                <span key={t}>{t}</span>
+              {member.herramientas.map((tool) => (
+                <span key={L(tool, "es")}>{L(tool, lang)}</span>
               ))}
             </div>
-            <h2>Idiomas</h2>
-            <p>{member.idiomas.join(" · ")}</p>
+            <h2>{t("profile.idiomas")}</h2>
+            <p>{member.idiomas.map((i) => L(i, lang)).join(" · ")}</p>
             <div className="profile-social">
               {Object.entries(member.social)
                 .filter(([key]) => key !== "mail")

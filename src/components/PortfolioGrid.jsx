@@ -1,16 +1,16 @@
 import { useState } from "react";
 import ProjectCard from "./ProjectCard.jsx";
 import ProjectModal from "./ProjectModal.jsx";
+import { useLanguage } from "../i18n/LanguageContext.jsx";
 
 export default function PortfolioGrid({ projects, filtered = false }) {
   const [selected, setSelected] = useState(null);
+  const { t } = useLanguage();
 
   if (!projects.length) {
     return (
       <p className="paragraph reveal">
-        {filtered
-          ? "No hay proyectos en esta categoría. Probá otro filtro."
-          : "Todavía no hay proyectos cargados. ¡Muy pronto!"}
+        {t(filtered ? "portfolio.emptyFiltered" : "portfolio.empty")}
       </p>
     );
   }

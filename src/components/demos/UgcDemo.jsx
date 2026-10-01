@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useMotion } from "../MotionProvider.jsx";
 import OptionChips from "./OptionChips.jsx";
 import { UGC_ACTIONS, UGC_MODELS, buildPost } from "../../data/ugc.js";
+import { useLanguage, L } from "../../i18n/LanguageContext.jsx";
 
 const RENDER_MS = 1100;
 
@@ -31,11 +32,16 @@ function CreatorVisual({ model, clip }) {
 
 export default function UgcDemo() {
   const { motion } = useMotion();
+  const { lang, t } = useLanguage();
   const [modelId, setModelId] = useState(UGC_MODELS[0].id);
   const [actionId, setActionId] = useState(UGC_ACTIONS[0].id);
   const model = UGC_MODELS.find((m) => m.id === modelId);
   const action = UGC_ACTIONS.find((a) => a.id === actionId);
-  const post = useMemo(() => buildPost(model, action), [model, action]);
+  const post = useMemo(
+    () => buildPost(model, action, lang),
+    [model, action, lang],
+  );
+  const actions = UGC_ACTIONS.map((a) => ({ id: a.id, name: L(a.label, lang) }));
 
   // A short "generating" pass whenever the combination changes.
   const combo = `${modelId}/${actionId}`;
@@ -54,8 +60,8 @@ export default function UgcDemo() {
   return (
     <div className="ugc-demo">
       <div className="ugc-pickers">
-        <div className="ugc-models" role="group" aria-label="Modelo">
-          <span className="mono">Modelo</span>
+        <div className="ugc-models" role="group" aria-label={t("ugc.model")}>
+          <span className="mono">{t("ugc.model")}</span>
           <div>
             {UGC_MODELS.map((m) => (
               <button
@@ -68,15 +74,15 @@ export default function UgcDemo() {
                 <CreatorVisual model={m} />
                 <span>
                   <strong>{m.name}</strong>
-                  <small className="mono">{m.niche}</small>
+                  <small className="mono">{L(m.niche, lang)}</small>
                 </span>
               </button>
             ))}
           </div>
         </div>
         <OptionChips
-          label="Acción"
-          items={UGC_ACTIONS}
+          label={t("ugc.action")}
+          items={actions}
           value={actionId}
           onChange={setActionId}
         />
@@ -98,7 +104,7 @@ export default function UgcDemo() {
               <i style={{ background: model.colors[1] }}>{model.name[0]}</i>
               <span>
                 <strong>{model.handle}</strong>
-                <small>Colaboración pagada · Creado con IA</small>
+                <small>{t("ugc.paid")}</small>
               </span>
             </div>
             <p className="ugc-phone__hook">

@@ -2,11 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import { useMotion } from "../MotionProvider.jsx";
 import OptionChips from "./OptionChips.jsx";
 import { CLONE_PRODUCTS } from "../../data/clone.js";
+import { useLanguage, L } from "../../i18n/LanguageContext.jsx";
 
 // The product photo. On the hero shot, moving the pointer across it (or
 // dragging on touch, or the arrow keys) turns the product through its
 // turntable frames: left edge is the first angle, right edge the last.
 function CloneStage({ product, scene }) {
+  const { lang, t } = useLanguage();
+  const alt = L(scene.alt, lang);
   const spin = scene === product.scenes[0] ? product.spin : [];
   const [armed, setArmed] = useState(false); // turntable frames mounted
   const [frame, setFrame] = useState(null); // turntable frame while turning
@@ -34,7 +37,7 @@ function CloneStage({ product, scene }) {
       {...(spin.length && {
         tabIndex: 0,
         role: "img",
-        "aria-label": `${scene.alt}. Vista 360: mové el mouse sobre la imagen o usá las flechas.`,
+        "aria-label": t("clone.spinAria", { alt }),
         onPointerEnter: follow,
         onPointerDown: follow,
         onPointerMove: follow,
@@ -50,7 +53,7 @@ function CloneStage({ product, scene }) {
         key={scene.id}
         className="clone-stage__still"
         src={scene.src}
-        alt={spin.length ? "" : scene.alt}
+        alt={spin.length ? "" : alt}
         draggable="false"
       />
       {armed && spin.length > 0 && (
@@ -73,8 +76,8 @@ function CloneStage({ product, scene }) {
             `${spin[frame].deg}°`
           ) : (
             <>
-              <span className="hint-hover">Pasá el mouse</span>
-              <span className="hint-touch">Deslizá</span>
+              <span className="hint-hover">{t("clone.hintHover")}</span>
+              <span className="hint-touch">{t("clone.hintTouch")}</span>
             </>
           )}
         </span>
@@ -86,6 +89,7 @@ function CloneStage({ product, scene }) {
 // A UGC clip shown large in the stage, with sound and player controls. The
 // blurred poster fills the space the vertical video leaves around it.
 function StageClip({ clip }) {
+  const { lang, t } = useLanguage();
   return (
     <div className="clone-stage is-video">
       <img className="clone-stage__backdrop" src={clip.poster} alt="" />
@@ -93,7 +97,7 @@ function StageClip({ clip }) {
         className="clone-stage__video"
         src={clip.src}
         poster={clip.poster}
-        aria-label={`UGC con el clon: ${clip.name}`}
+        aria-label={t("clone.clipAria", { name: L(clip.name, lang) })}
         controls
         autoPlay
         playsInline
@@ -106,6 +110,8 @@ function StageClip({ clip }) {
 // clip large in the stage.
 function UgcClip({ clip, active, onSelect }) {
   const { motion } = useMotion();
+  const { lang, t } = useLanguage();
+  const name = L(clip.name, lang);
   const video = useRef(null);
   const [visible, setVisible] = useState(false);
 
@@ -129,7 +135,7 @@ function UgcClip({ clip, active, onSelect }) {
       type="button"
       className="ugc-clip"
       aria-pressed={active}
-      aria-label={`Ver en grande: ${clip.name}`}
+      aria-label={t("clone.viewLarge", { name })}
       onClick={onSelect}
     >
       <video
@@ -142,13 +148,14 @@ function UgcClip({ clip, active, onSelect }) {
         preload="metadata"
       />
       <span className="mono">
-        {active ? "▶ En pantalla" : `▶ ${clip.name}`}
+        {active ? t("clone.onStage") : `▶ ${name}`}
       </span>
     </button>
   );
 }
 
 function ProductDemo({ product, picker }) {
+  const { lang, t } = useLanguage();
   // What the stage shows: a scene or a UGC clip, by id.
   const [shownId, setShownId] = useState(product.scenes[0].id);
   const clip = product.ugc.find((c) => c.id === shownId);
@@ -163,8 +170,12 @@ function ProductDemo({ product, picker }) {
       )}
       <div className="clone-demo__controls">
         {picker}
-        <div className="clone-scenes" role="group" aria-label="Situación">
-          <span className="mono">Situación</span>
+        <div
+          className="clone-scenes"
+          role="group"
+          aria-label={t("clone.setting")}
+        >
+          <span className="mono">{t("clone.setting")}</span>
           <div>
             {product.scenes.map((s) => (
               <button
@@ -175,14 +186,18 @@ function ProductDemo({ product, picker }) {
                 onClick={() => setShownId(s.id)}
               >
                 <img src={s.thumb} alt="" loading="lazy" />
-                {s.name}
+                {L(s.name, lang)}
               </button>
             ))}
           </div>
         </div>
         {product.ugc.length > 0 && (
-          <div className="clone-ugc" role="group" aria-label="UGC con el clon">
-            <span className="mono">UGC con el clon</span>
+          <div
+            className="clone-ugc"
+            role="group"
+            aria-label={t("clone.ugc")}
+          >
+            <span className="mono">{t("clone.ugc")}</span>
             <div>
               {product.ugc.map((c) => (
                 <UgcClip
@@ -203,6 +218,7 @@ function ProductDemo({ product, picker }) {
 // Product picker on top of the selected product's demo. Switching product
 // remounts the demo so it starts again from its hero shot.
 export default function CloneDemo() {
+  const { lang, t } = useLanguage();
   const [productId, setProductId] = useState(CLONE_PRODUCTS[0].id);
   const product = CLONE_PRODUCTS.find((p) => p.id === productId);
 
@@ -213,12 +229,12 @@ export default function CloneDemo() {
       picker={
         <div className="clone-product">
           <OptionChips
-            label="Producto"
+            label={t("clone.product")}
             items={CLONE_PRODUCTS}
             value={productId}
             onChange={setProductId}
           />
-          <p className="mono">{product.kind}</p>
+          <p className="mono">{L(product.kind, lang)}</p>
         </div>
       }
     />

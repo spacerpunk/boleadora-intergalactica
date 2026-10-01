@@ -1,16 +1,18 @@
 import { Link } from "react-router-dom";
 import { STUDIO } from "../config.js";
+import { useLanguage } from "../i18n/LanguageContext.jsx";
 export default function Footer() {
+  const { t } = useLanguage();
   return (
     <footer className="studio-footer">
       <div className="footer-top mono">
-        <span>OFICIO DE CINE, HERRAMIENTAS DE IA Y UNOS CUANTOS MATES.</span>
-        <a href="#top">VOLVER ARRIBA ↑</a>
+        <span>{t("footer.line")}</span>
+        <a href="#top">{t("footer.top")}</a>
       </div>
       <Link
         to="/"
         className="footer-wordmark"
-        aria-label="Ruido de Mate, inicio"
+        aria-label={t("footer.homeAria")}
       >
         ruido de mate<span>®</span>
       </Link>

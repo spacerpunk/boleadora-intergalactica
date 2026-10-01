@@ -1,10 +1,13 @@
 import Dialog from "./Dialog.jsx";
+import { useLanguage, L } from "../i18n/LanguageContext.jsx";
 export default function ProjectModal({ project, onClose }) {
+  const { lang, t } = useLanguage();
+  const title = project && L(project.titulo, lang);
   return (
     <Dialog
       open={!!project}
       onClose={onClose}
-      label={project?.titulo || "Proyecto"}
+      label={title || t("project.fallback")}
       className="project-dialog"
     >
       {project && (
@@ -13,22 +16,22 @@ export default function ProjectModal({ project, onClose }) {
             <img
               className="project-detail-cover"
               src={project.cover}
-              alt={project.titulo}
+              alt={title}
             />
           )}
           <div className="project-detail">
-            <span className="mono orange">{project.categoria}</span>
-            <h2>{project.titulo}</h2>
+            <span className="mono orange">{L(project.categoria, lang)}</span>
+            <h2>{title}</h2>
             <div className="project-meta mono">
-              <span>{project.cliente}</span>
+              <span>{L(project.cliente, lang)}</span>
               <span>{project.anio}</span>
             </div>
-            {project.descripcion.map((p, i) => (
+            {L(project.descripcion, lang).map((p, i) => (
               <p key={i}>{p}</p>
             ))}
             <div className="project-tags">
-              {project.tags?.map((t) => (
-                <span key={t}>{t}</span>
+              {(L(project.tags, lang) || []).map((tag) => (
+                <span key={tag}>{tag}</span>
               ))}
             </div>
             <div className="project-links">
@@ -37,12 +40,12 @@ export default function ProjectModal({ project, onClose }) {
                 .map((l) => (
                   <a
                     className="text-link"
-                    key={l.label}
+                    key={l.url}
                     href={l.url}
                     target={l.url.startsWith("http") ? "_blank" : undefined}
                     rel="noreferrer"
                   >
-                    {l.label} ↗
+                    {L(l.label, lang)} ↗
                   </a>
                 ))}
             </div>

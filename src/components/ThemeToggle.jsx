@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLanguage } from "../i18n/LanguageContext.jsx";
 
 const SUN = (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -33,6 +34,7 @@ function getInitialTheme() {
 }
 
 export default function ThemeToggle() {
+  const { t } = useLanguage();
   const [theme, setTheme] = useState(getInitialTheme);
 
   useEffect(() => {
@@ -51,8 +53,8 @@ export default function ThemeToggle() {
       type="button"
       className="navbar__rrss__icon theme-toggle"
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      aria-label={isDark ? "Activar modo claro" : "Activar modo oscuro"}
-      title={isDark ? "Modo claro" : "Modo oscuro"}
+      aria-label={isDark ? t("theme.toLight") : t("theme.toDark")}
+      title={isDark ? t("theme.light") : t("theme.dark")}
     >
       {isDark ? SUN : MOON}
     </button>

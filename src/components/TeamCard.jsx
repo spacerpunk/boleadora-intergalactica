@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
+import { useLanguage, L } from "../i18n/LanguageContext.jsx";
 export default function TeamCard({ member }) {
+  const { lang, t } = useLanguage();
   return (
     <Link
       className={`team-card team-card--${member.id}`}
@@ -9,7 +11,7 @@ export default function TeamCard({ member }) {
         <img
           className="portrait-original"
           src={member.portrait}
-          alt={`Retrato de ${member.nombreCompleto}`}
+          alt={t("team.portraitAlt", { name: member.nombreCompleto })}
           loading="lazy"
         />
         <img
@@ -19,14 +21,14 @@ export default function TeamCard({ member }) {
           loading="lazy"
         />
         <span className="portrait-label mono">
-          HUMANO / <span>ALTER EGO IA</span>
+          {t("team.human")} <span>{t("team.alter")}</span>
         </span>
         <span className="portrait-arrow">↗</span>
       </div>
       <div className="team-card__body">
-        <span className="mono">{member.tagline}</span>
+        <span className="mono">{L(member.tagline, lang)}</span>
         <h3>{member.nombreCompleto}</h3>
-        <p>{member.rol}</p>
+        <p>{L(member.rol, lang)}</p>
       </div>
     </Link>
   );

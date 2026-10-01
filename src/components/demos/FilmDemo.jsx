@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLanguage } from "../../i18n/LanguageContext.jsx";
 
 const FILMS = [
   {
@@ -18,6 +19,7 @@ const FILMS = [
 // Raw frame vs. finished frame. The finish (grade, halation, grain,
 // vignette, gate weave and scope) is simulated live with CSS.
 export default function FilmDemo() {
+  const { t } = useLanguage();
   const [filmId, setFilmId] = useState(FILMS[0].id);
   const [split, setSplit] = useState(50);
   const film = FILMS.find((f) => f.id === filmId);
@@ -28,7 +30,7 @@ export default function FilmDemo() {
         <img
           className="grade-raw"
           src={film.frame}
-          alt={`Fotograma de ${film.title}`}
+          alt={t("film.frameAlt", { title: film.title })}
         />
         <div className="grade-post" aria-hidden="true">
           <div className="grade-plate">
@@ -45,10 +47,10 @@ export default function FilmDemo() {
           <span>↔</span>
         </div>
         <span className="grade-tag grade-tag--raw mono" aria-hidden="true">
-          CRUDO
+          {t("film.raw")}
         </span>
         <span className="grade-tag grade-tag--post mono" aria-hidden="true">
-          FINAL
+          {t("film.final")}
         </span>
         <input
           className="grade-range"
@@ -57,7 +59,7 @@ export default function FilmDemo() {
           max="100"
           value={split}
           onChange={(e) => setSplit(Number(e.target.value))}
-          aria-label="Comparar el fotograma crudo con el final"
+          aria-label={t("film.compare")}
         />
       </div>
 
@@ -73,7 +75,7 @@ export default function FilmDemo() {
               <span>{f.title}</span>
             </button>
             <a className="mono" href={f.url} target="_blank" rel="noreferrer">
-              VER FILM ↗
+              {t("film.watch")}
             </a>
           </li>
         ))}

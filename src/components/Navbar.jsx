@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useMotion } from "./MotionProvider.jsx";
+import LanguageToggle from "./LanguageToggle.jsx";
+import { useLanguage, L } from "../i18n/LanguageContext.jsx";
 import { SERVICES } from "../data/services.js";
 export function StudioMark() {
   return (
@@ -13,17 +15,16 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
   const { motion, reduced, toggle } = useMotion();
-  const motionLabel = reduced
-    ? "Animaciones desactivadas por preferencia del sistema"
-    : motion
-      ? "Pausar animaciones"
-      : "Activar animaciones";
+  const { lang, t } = useLanguage();
+  const motionLabel = t(
+    reduced ? "motion.reduced" : motion ? "motion.pause" : "motion.play",
+  );
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
   return (
     <header className="studio-nav">
-      <Link className="studio-brand" to="/" aria-label="Ruido de Mate — Inicio">
+      <Link className="studio-brand" to="/" aria-label={t("nav.homeAria")}>
         <StudioMark />
         <span>
           ruido
@@ -34,7 +35,7 @@ export default function Navbar() {
       <span className="nav-descriptor mono">
         AI ADVERTISING STUDIO
         <br />
-        BUENOS AIRES ↗ MUNDO
+        {t("nav.where")}
       </span>
       <button
         className="menu-toggle mono"
@@ -42,12 +43,12 @@ export default function Navbar() {
         aria-controls="studio-navigation"
         onClick={() => setOpen(!open)}
       >
-        {open ? "CERRAR −" : "MENÚ +"}
+        {t(open ? "nav.close" : "nav.menu")}
       </button>
       <nav
         id="studio-navigation"
         className={open ? "nav-links is-open" : "nav-links"}
-        aria-label="Navegación principal"
+        aria-label={t("nav.aria")}
         onKeyDown={(e) => {
           if (e.key === "Escape") setOpen(false);
         }}
@@ -58,18 +59,19 @@ export default function Navbar() {
             to={`/#${service.id}`}
             onClick={() => setOpen(false)}
           >
-            {service.nav}
+            {L(service.nav, lang)}
           </Link>
         ))}
-        <NavLink to="/nosotros">Nosotros</NavLink>
+        <NavLink to="/nosotros">{t("nav.about")}</NavLink>
         <Link
           className="nav-contact"
           to="/#contacto"
           onClick={() => setOpen(false)}
         >
-          Hablemos <span>↗</span>
+          {t("nav.contact")} <span>↗</span>
         </Link>
       </nav>
+      <LanguageToggle />
       <button
         className="motion-toggle"
         onClick={toggle}

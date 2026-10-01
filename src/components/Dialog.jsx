@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { useLanguage } from "../i18n/LanguageContext.jsx";
 export default function Dialog({
   open,
   onClose,
@@ -7,6 +8,7 @@ export default function Dialog({
   children,
 }) {
   const ref = useRef(null);
+  const { t } = useLanguage();
   useEffect(() => {
     const dialog = ref.current;
     if (!open) return;
@@ -38,7 +40,7 @@ export default function Dialog({
           <button
             className="dialog-close"
             onClick={onClose}
-            aria-label="Cerrar"
+            aria-label={t("dialog.close")}
           >
             ×
           </button>

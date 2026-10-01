@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { useMotion } from "./MotionProvider.jsx";
 import Dialog from "./Dialog.jsx";
+import { useLanguage } from "../i18n/LanguageContext.jsx";
 
 export default function ReelHero() {
   const video = useRef(null);
   const { motion } = useMotion();
+  const { t } = useLanguage();
   const [open, setOpen] = useState(false);
   const [paused, setPaused] = useState(false);
   const [failed, setFailed] = useState(false);
@@ -43,17 +45,17 @@ export default function ReelHero() {
           <span>
             <i className="status-dot" /> AI ADVERTISING STUDIO
           </span>
-          <span>PUBLICIDAD CON IA. CRITERIO DE CINE.</span>
+          <span>{t("hero.tagline")}</span>
         </div>
         <div className="hero-center">
           <button
             className="reel-open"
             onClick={() => setOpen(true)}
-            aria-label="Ver reel del estudio"
+            aria-label={t("hero.reelAria")}
           >
             <span>↗</span>
             <span className="mono">
-              VER REEL
+              {t("hero.reel")}
               <br />
               00:18
             </span>
@@ -61,23 +63,23 @@ export default function ReelHero() {
         </div>
         <div className="hero-message">
           <div className="hero-eyebrow mono">
-            CONTENIDO SINTÉTICO / FILMS CON IA / UGC CON AGENTES
+            {t("hero.eyebrow")}
           </div>
           <h1 id="hero-title">
-            OFICIO VIEJO.
+            {t("hero.title1")}
             <br />
-            <span>MUNDO NUEVO.</span>
+            <span>{t("hero.title2")}</span>
           </h1>
           <div className="hero-description">
             <p>
-              Publicidad hecha con inteligencia artificial
+              {t("hero.text1")}
               <br />
-              por gente de cine, post y sonido.
+              {t("hero.text2")}
             </p>
             <a
               className="hero-down"
               href="#manifiesto"
-              aria-label="Conocer el estudio"
+              aria-label={t("hero.downAria")}
             >
               ↓
             </a>
@@ -89,22 +91,22 @@ export default function ReelHero() {
           <button
             onClick={() => setPaused(!paused)}
             disabled={!motion || failed}
-            aria-label={
+            aria-label={t(
               !motion
-                ? "Video pausado con las animaciones"
+                ? "hero.videoStopped"
                 : paused
-                  ? "Reproducir video de fondo"
-                  : "Pausar video de fondo"
-            }
+                  ? "hero.videoPlay"
+                  : "hero.videoPause",
+            )}
           >
-            {!motion ? "Ⅱ EN PAUSA" : paused ? "▷ REPRODUCIR" : "Ⅱ PAUSAR"}
+            {t(!motion ? "hero.stopped" : paused ? "hero.play" : "hero.pause")}
           </button>
         </div>
       </section>
       <Dialog
         open={open}
         onClose={() => setOpen(false)}
-        label="Reel de Ruido de Mate"
+        label={t("hero.reelLabel")}
         className="reel-dialog"
       >
         <video
@@ -115,7 +117,7 @@ export default function ReelHero() {
           poster="/media/reel-poster.jpg"
         />
         <p className="mono">
-          RUIDO DE MATE / SELECTED CUTS — EDICIÓN VISUAL, SIN AUDIO
+          {t("hero.reelCaption")}
         </p>
       </Dialog>
     </>

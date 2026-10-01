@@ -214,6 +214,36 @@ html {
 .menu-toggle {
   display: none;
   background: none;
+  white-space: nowrap;
+}
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex: none;
+  height: 28px;
+  padding: 0 9px;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+  transition: border-color 0.2s;
+}
+.lang-toggle:hover {
+  border-color: var(--muted);
+}
+.lang-toggle .is-on {
+  color: inherit;
+}
+.studio-nav .lang-toggle .is-on {
+  color: var(--paper);
+}
+.studio-nav:has(~ main .reel-hero) .lang-toggle {
+  border-color: #ffffff35;
+  color: #ffffff80;
+}
+.studio-nav:has(~ main .reel-hero) .lang-toggle .is-on {
+  color: #ecebe3;
 }
 /* Opening film */
 .reel-hero {
@@ -1715,7 +1745,7 @@ html {
     height: 680px;
   }
   .hero-message h1 {
-    font-size: 205px;
+    font-size: 174px;
   }
 }
 @media (max-width: 1100px) {
@@ -1856,6 +1886,9 @@ html {
   .motion-toggle {
     height: 32px;
     width: 32px;
+  }
+  .lang-toggle {
+    height: 32px;
   }
   .reel-hero {
     min-height: 680px;

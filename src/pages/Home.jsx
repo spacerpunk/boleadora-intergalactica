@@ -6,11 +6,13 @@ import PillarSection from "../components/PillarSection.jsx";
 import ContactModal from "../components/ContactModal.jsx";
 import { SERVICES } from "../data/services.js";
 import { STUDIO } from "../config.js";
+import { useLanguage } from "../i18n/LanguageContext.jsx";
 export default function Home() {
   const [contact, setContact] = useState(null);
+  const { t } = useLanguage();
   useEffect(() => {
-    document.title = "Ruido de Mate — Publicidad con IA. Oficio de cine.";
-  }, []);
+    document.title = t("home.docTitle");
+  }, [t]);
   return (
     <>
       <Navbar />
@@ -22,8 +24,8 @@ export default function Home() {
           aria-labelledby="manifesto-heading"
         >
           <div className="section-kicker mono">
-            <span>[ QUIÉNES SOMOS ]</span>
-            <span>DEL SET A LA IA</span>
+            <span>{t("home.who")}</span>
+            <span>{t("home.fromSet")}</span>
           </div>
           <div className="manifesto-grid">
             <span className="manifesto-star" aria-hidden="true">
@@ -31,22 +33,16 @@ export default function Home() {
             </span>
             <div>
               <h2 id="manifesto-heading">
-                La IA genera.
+                {t("home.manifesto1")}
                 <br />
-                El oficio <em>decide.</em>
+                {t("home.manifesto2")} <em>{t("home.manifesto3")}</em>
               </h2>
-              <p>
-                Somos un estudio de publicidad especializado en inteligencia
-                artificial. Venimos de rodajes, islas de edición y salas de
-                mezcla: aprendimos a contar historias antes de que existiera un
-                prompt. Hoy usamos la IA para producir más rápido y a escala, y
-                el oficio para que el resultado no parezca hecho con IA.
-              </p>
+              <p>{t("home.manifestoText")}</p>
             </div>
           </div>
           <div className="manifesto-bottom mono">
-            <span>UN SOLO NICHO: PUBLICIDAD. TRES PILARES.</span>
-            <span>UN MISMO EQUIPO. ↓</span>
+            <span>{t("home.niche")}</span>
+            <span>{t("home.team")}</span>
           </div>
         </section>
         {SERVICES.map((service) => (
@@ -59,28 +55,28 @@ export default function Home() {
         ))}
         <section id="contacto" className="contact-section">
           <div className="section-kicker mono">
-            <span>[ TU PRÓXIMA CAMPAÑA EMPIEZA ACÁ ]</span>
+            <span>{t("home.nextCampaign")}</span>
             <span>BA ↗ WORLDWIDE</span>
           </div>
           <button
             className="contact-headline"
-            onClick={() => setContact("Proyecto integral")}
+            onClick={() => setContact("full")}
           >
-            ¿HACEMOS
+            {t("home.contact1")}
             <br />
-            <span>RUIDO?</span>
+            <span>{t("home.contact2")}</span>
             <span className="contact-arrow">↗</span>
           </button>
           <div className="contact-bottom">
-            <p>Traé tu producto, tu marca o tu calendario de contenido.</p>
+            <p>{t("home.contactText")}</p>
             <button
               className="solid-button"
-              onClick={() => setContact("Proyecto integral")}
+              onClick={() => setContact("full")}
             >
-              Contanos tu proyecto <span>↗</span>
+              {t("home.contactCta")} <span>↗</span>
             </button>
             <a className="mono" href={STUDIO.social.mail}>
-              O ESCRIBINOS POR EMAIL ↗
+              {t("home.contactMail")}
             </a>
           </div>
         </section>

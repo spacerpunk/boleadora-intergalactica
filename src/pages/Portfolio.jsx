@@ -5,36 +5,42 @@ import { PROJECTS, getProjectsByOwner } from "../data/projects.js";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
 import PortfolioGrid from "../components/PortfolioGrid.jsx";
+import { useLanguage, L } from "../i18n/LanguageContext.jsx";
+// Patterns match the Spanish category and tags, whatever the UI language.
 const FILTERS = [
-  { label: "Todo", pattern: null },
+  { label: "portfolio.filter.all", pattern: null },
   {
-    label: "Post & motion",
+    label: "portfolio.filter.post",
     pattern:
       /motion|edición|animación|3d|vfx|video|realización|postproducción/i,
   },
   {
-    label: "Creatividad & diseño",
+    label: "portfolio.filter.design",
     pattern: /diseño|ux|ui|branding|web|campaña/i,
   },
-  { label: "Sonido & música", pattern: /sonido|sound|foley|música|audio/i },
-  { label: "IA", pattern: /ia generativa|agentic|automatización/i },
+  { label: "portfolio.filter.sound", pattern: /sonido|sound|foley|música|audio/i },
+  { label: "portfolio.filter.ai", pattern: /ia generativa|agentic|automatización/i },
 ];
 export default function Portfolio() {
   const { id } = useParams();
   const member = id ? getMember(id) : null;
   const [filter, setFilter] = useState(0);
+  const { lang, t } = useLanguage();
   useEffect(() => {
     setFilter(0);
   }, [id]);
   useEffect(() => {
-    document.title = `${member ? `Trabajos de ${member.nombre}` : "Archivo"} — Ruido de Mate`;
-  }, [member]);
+    const page = member
+      ? t("portfolio.docMember", { name: member.nombre })
+      : t("portfolio.docStudio");
+    document.title = `${page} — Ruido de Mate`;
+  }, [member, t]);
   if (id && !member) return <Navigate to="/" replace />;
   const projects = member ? getProjectsByOwner(member.id) : PROJECTS;
   const pattern = FILTERS[filter].pattern;
   const visible = pattern
     ? projects.filter((p) =>
-        pattern.test(`${p.categoria} ${p.tags?.join(" ")}`),
+        pattern.test(`${L(p.categoria, "es")} ${L(p.tags, "es") || ""}`),
       )
     : projects;
   return (
@@ -43,45 +49,46 @@ export default function Portfolio() {
       <main id="top" className="portfolio-page">
         <section className="page-heading">
           <div className="section-kicker mono">
-            <span>[ ARCHIVO ]</span>
-            <span>EL OFICIO DE ANTES.</span>
+            <span>{t("portfolio.kicker")}</span>
+            <span>{t("portfolio.kicker2")}</span>
           </div>
           <h1>
             {member ? (
               <>
-                EL RUIDO
+                {t("portfolio.memberTitle1")}
                 <br />
-                DE <em>{member.nombre.toUpperCase()}.</em>
+                {t("portfolio.memberTitle2")}{" "}
+                <em>{member.nombre.toUpperCase()}.</em>
               </>
             ) : (
               <>
-                EL OFICIO
+                {t("portfolio.studioTitle1")}
                 <br />
-                <em>DE ANTES.</em>
+                <em>{t("portfolio.studioTitle2")}</em>
               </>
             )}
           </h1>
           <div className="portfolio-intro">
             <p>
               {member
-                ? `Una selección de proyectos de ${member.nombreCompleto}.`
-                : "Antes de la IA hubo rodajes, islas de edición y salas de mezcla. Este es el archivo de trabajos de quienes formamos Ruido de Mate: la base de todo lo que hacemos hoy."}
+                ? t("portfolio.memberText", { name: member.nombreCompleto })
+                : t("portfolio.studioText")}
             </p>
             {member ? (
               <Link className="text-link" to={`/profile/${member.id}`}>
-                Volver al perfil ↗
+                {t("portfolio.backProfile")}
               </Link>
             ) : (
               <Link className="text-link" to="/#contenido-sintetico">
-                Lo que hacemos hoy ↗
+                {t("portfolio.today")}
               </Link>
             )}
           </div>
         </section>
-        <section className="portfolio-content" aria-label="Proyectos">
+        <section className="portfolio-content" aria-label={t("portfolio.projectsAria")}>
           <div
             className="portfolio-filters"
-            aria-label="Filtrar por disciplina"
+            aria-label={t("portfolio.filterAria")}
           >
             {FILTERS.map((f, i) => (
               <button
@@ -89,11 +96,13 @@ export default function Portfolio() {
                 onClick={() => setFilter(i)}
                 aria-pressed={filter === i}
               >
-                {f.label}
+                {t(f.label)}
               </button>
             ))}
             <span className="mono" aria-live="polite">
-              {String(visible.length).padStart(2, "0")} PROYECTOS
+              {t("portfolio.count", {
+                n: String(visible.length).padStart(2, "0"),
+              })}
             </span>
           </div>
           <PortfolioGrid projects={visible} filtered={filter !== 0} />
@@ -101,13 +110,13 @@ export default function Portfolio() {
             <div className="external-portfolios">
               {member.portfolioLinks.map((l) => (
                 <a
-                  key={l.label}
+                  key={l.url}
                   className="text-link"
                   href={l.url}
                   target="_blank"
                   rel="noreferrer"
                 >
-                  {l.label} ↗
+                  {L(l.label, lang)} ↗
                 </a>
               ))}
             </div>
@@ -115,12 +124,12 @@ export default function Portfolio() {
         </section>
         <div className="about-invite">
           <p>
-            Hagamos algo
+            {t("portfolio.invite1")}
             <br />
-            que valga la pena mirar.
+            {t("portfolio.invite2")}
           </p>
           <Link className="solid-button" to="/#contacto">
-            Contanos tu proyecto ↗
+            {t("portfolio.inviteCta")}
           </Link>
         </div>
       </main>

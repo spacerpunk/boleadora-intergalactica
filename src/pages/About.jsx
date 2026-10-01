@@ -4,54 +4,51 @@ import Footer from "../components/Footer.jsx";
 import TeamCard from "../components/TeamCard.jsx";
 import { TEAM } from "../data/team.js";
 import { Link } from "react-router-dom";
+import { useLanguage } from "../i18n/LanguageContext.jsx";
 
 export default function About() {
   const [alternate, setAlternate] = useState(false);
+  const { t } = useLanguage();
   useEffect(() => {
-    document.title = "Nosotros — Ruido de Mate";
-  }, []);
+    document.title = t("about.docTitle");
+  }, [t]);
   return (
     <>
       <Navbar />
       <main id="top" className="about-page">
         <section className="page-heading">
           <div className="section-kicker mono">
-            <span>[ NOSOTROS ]</span>
-            <span>BUENOS AIRES ↗ MUNDO</span>
+            <span>{t("about.kicker")}</span>
+            <span>{t("nav.where")}</span>
           </div>
           <h1>
-            HUMANOS
+            {t("about.title1")}
             <br />
-            DETRÁS DE <em>LA IA.</em>
+            {t("about.title2")} <em>{t("about.title3")}</em>
           </h1>
           <div className="page-intro">
             <span className="page-asterisk" aria-hidden="true">
               ✳
             </span>
-            <p>
-              Editores, postproductores, sonidistas, diseñadores y tecnólogos
-              creativos. Aprendimos el oficio en rodajes, islas de edición y
-              salas de mezcla; hoy lo aplicamos a la publicidad hecha con
-              inteligencia artificial.
-            </p>
+            <p>{t("about.intro")}</p>
           </div>
         </section>
         <section className="team-section" aria-labelledby="team-heading">
           <div className="team-section-top">
             <div>
-              <span className="mono orange">[ EL EQUIPO ]</span>
-              <h2 id="team-heading">Humanos, por suerte.</h2>
+              <span className="mono orange">{t("about.teamKicker")}</span>
+              <h2 id="team-heading">{t("about.teamTitle")}</h2>
             </div>
             <button
               className="portrait-switch mono"
               aria-pressed={alternate}
               onClick={() => setAlternate(!alternate)}
             >
-              {alternate ? "VOLVER A LA REALIDAD ↺" : "ACTIVAR ALTER EGOS ↗"}
+              {t(alternate ? "about.alterOff" : "about.alterOn")}
             </button>
           </div>
           <p className="team-hint mono">
-            PASÁ POR LOS RETRATOS: CADA UNO TIENE SU VERSIÓN GENERADA CON IA.
+            {t("about.hint")}
           </p>
           <div className={`team-grid ${alternate ? "show-alternates" : ""}`}>
             {TEAM.map((member) => (
@@ -61,22 +58,22 @@ export default function About() {
         </section>
         <div className="about-invite">
           <p>
-            De dónde venimos:
+            {t("about.archive1")}
             <br />
-            el archivo del equipo.
+            {t("about.archive2")}
           </p>
           <Link className="solid-button" to="/portfolio">
-            Ver el archivo ↗
+            {t("about.archiveCta")}
           </Link>
         </div>
         <div className="about-invite">
           <p>
-            La próxima campaña
+            {t("about.next1")}
             <br />
-            podría ser la tuya.
+            {t("about.next2")}
           </p>
           <Link className="solid-button" to="/#contacto">
-            Hablemos ↗
+            {t("about.nextCta")}
           </Link>
         </div>
       </main>
