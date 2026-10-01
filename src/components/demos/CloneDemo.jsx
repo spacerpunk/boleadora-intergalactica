@@ -1,114 +1,226 @@
-import { useEffect, useState } from "react";
-import ProductClone from "./ProductClone.jsx";
+import { useEffect, useRef, useState } from "react";
+import { useMotion } from "../MotionProvider.jsx";
 import OptionChips from "./OptionChips.jsx";
-import { CLONE_FLAVORS, CLONE_SCENES, CLONE_SHOTS } from "../../data/clone.js";
+import { CLONE_PRODUCTS } from "../../data/clone.js";
 
-const SHOT_MS = 2000;
-const sceneById = (id) => CLONE_SCENES.find((s) => s.id === id);
+// The product photo. On the hero shot, moving the pointer across it (or
+// dragging on touch, or the arrow keys) turns the product through its
+// turntable frames: left edge is the first angle, right edge the last.
+function CloneStage({ product, scene }) {
+  const spin = scene === product.scenes[0] ? product.spin : [];
+  const [armed, setArmed] = useState(false); // turntable frames mounted
+  const [frame, setFrame] = useState(null); // turntable frame while turning
 
-function CloneStage({ scene, flavor, frame = {}, trio, film, children }) {
-  const { zoom = 1, x = 0, y = 0, rot = 0 } = frame;
-  const clone = (f) => (
-    <ProductClone
-      key={f.id}
-      flavor={f}
-      rim={scene.rim}
-      shadow={scene.shadow}
-      droplets={scene.droplets}
-    />
-  );
+  const follow = (e) => {
+    if (!spin.length) return;
+    if (e.pointerType !== "mouse" && !e.buttons) return;
+    const box = e.currentTarget.getBoundingClientRect();
+    const ratio = Math.min(Math.max((e.clientX - box.left) / box.width, 0), 0.999);
+    setArmed(true);
+    setFrame(Math.floor(ratio * spin.length));
+  };
+  const step = (e) => {
+    if (!spin.length) return;
+    const delta = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+    if (!delta) return;
+    e.preventDefault();
+    setFrame((f) => ((f ?? 0) + delta + spin.length) % spin.length);
+  };
+
+  const turning = frame !== null && spin.length > 0;
   return (
-    <div className={`clone-stage ${film ? "is-film" : ""}`}>
-      <div className="clone-stage__camera">
-        <div
-          className="clone-stage__bg"
-          style={{ background: scene.background }}
-        />
-        {scene.props === "neon" && <span className="clone-neon" />}
-        <div
-          className={`clone-stage__subject ${trio ? "is-trio" : ""}`}
-          style={{
-            transform: `translate(${x}%, ${y}%) scale(${zoom}) rotate(${rot}deg)`,
-          }}
-        >
-          {trio ? CLONE_FLAVORS.map(clone) : clone(flavor)}
+    <div
+      className={`clone-stage ${spin.length ? "is-spinnable" : ""} ${turning ? "is-turning" : ""}`}
+      {...(spin.length && {
+        tabIndex: 0,
+        role: "img",
+        "aria-label": `${scene.alt}. Vista 360: mové el mouse sobre la imagen o usá las flechas.`,
+        onPointerEnter: follow,
+        onPointerDown: follow,
+        onPointerMove: follow,
+        onPointerLeave: () => setFrame(null),
+        onPointerUp: (e) => e.pointerType !== "mouse" && setFrame(null),
+        onPointerCancel: () => setFrame(null),
+        onFocus: () => setArmed(true),
+        onKeyDown: step,
+        onBlur: () => setFrame(null),
+      })}
+    >
+      <img
+        key={scene.id}
+        className="clone-stage__still"
+        src={scene.src}
+        alt={spin.length ? "" : scene.alt}
+        draggable="false"
+      />
+      {armed && spin.length > 0 && (
+        <div className="clone-stage__spin" aria-hidden="true">
+          {spin.map((f, i) => (
+            <img
+              key={f.deg}
+              className={i === frame ? "is-on" : ""}
+              src={f.src}
+              alt=""
+              draggable="false"
+            />
+          ))}
         </div>
-        {scene.props === "ice" && (
-          <>
-            <span className="clone-ice clone-ice--a" />
-            <span className="clone-ice clone-ice--b" />
-            <span className="clone-ice clone-ice--c" />
-          </>
-        )}
-      </div>
-      {children}
+      )}
+      {spin.length > 0 && (
+        <span className="clone-stage__badge mono" aria-hidden="true">
+          360° ·{" "}
+          {turning ? (
+            `${spin[frame].deg}°`
+          ) : (
+            <>
+              <span className="hint-hover">Pasá el mouse</span>
+              <span className="hint-touch">Deslizá</span>
+            </>
+          )}
+        </span>
+      )}
     </div>
   );
 }
 
-export default function CloneDemo() {
-  const [sceneId, setSceneId] = useState("estudio");
-  const [flavorId, setFlavorId] = useState("original");
-  const [shot, setShot] = useState(null); // shot index while the film plays
-  const playing = shot !== null;
+// A UGC clip shown large in the stage, with sound and player controls. The
+// blurred poster fills the space the vertical video leaves around it.
+function StageClip({ clip }) {
+  return (
+    <div className="clone-stage is-video">
+      <img className="clone-stage__backdrop" src={clip.poster} alt="" />
+      <video
+        className="clone-stage__video"
+        src={clip.src}
+        poster={clip.poster}
+        aria-label={`UGC con el clon: ${clip.name}`}
+        controls
+        autoPlay
+        playsInline
+      />
+    </div>
+  );
+}
+
+// A UGC clip thumbnail. Plays muted while on screen; pressing it opens the
+// clip large in the stage.
+function UgcClip({ clip, active, onSelect }) {
+  const { motion } = useMotion();
+  const video = useRef(null);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    if (!playing) return;
-    const timer = setTimeout(
-      () => setShot((i) => (i + 1 < CLONE_SHOTS.length ? i + 1 : null)),
-      SHOT_MS,
+    const observer = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { threshold: 0.3 },
     );
-    return () => clearTimeout(timer);
-  }, [shot, playing]);
+    observer.observe(video.current);
+    return () => observer.disconnect();
+  }, []);
 
-  const flavor = CLONE_FLAVORS.find((f) => f.id === flavorId);
-  const current = playing ? CLONE_SHOTS[shot] : null;
-  const scene = sceneById(current ? current.scene : sceneId);
+  useEffect(() => {
+    const el = video.current;
+    if (visible && motion && !active) el.play().catch(() => {});
+    else el.pause();
+  }, [visible, motion, active]);
+
+  return (
+    <button
+      type="button"
+      className="ugc-clip"
+      aria-pressed={active}
+      aria-label={`Ver en grande: ${clip.name}`}
+      onClick={onSelect}
+    >
+      <video
+        ref={video}
+        src={clip.src}
+        poster={clip.poster}
+        muted
+        loop
+        playsInline
+        preload="metadata"
+      />
+      <span className="mono">
+        {active ? "▶ En pantalla" : `▶ ${clip.name}`}
+      </span>
+    </button>
+  );
+}
+
+function ProductDemo({ product, picker }) {
+  // What the stage shows: a scene or a UGC clip, by id.
+  const [shownId, setShownId] = useState(product.scenes[0].id);
+  const clip = product.ugc.find((c) => c.id === shownId);
+  const scene = product.scenes.find((s) => s.id === shownId);
 
   return (
     <div className="clone-demo">
-      <CloneStage
-        key={playing ? `shot-${shot}` : "still"}
-        scene={scene}
-        flavor={flavor}
-        frame={current?.frame}
-        trio={current?.trio}
-        film={playing}
-      >
-        {playing && (
-          <span className="clone-tc mono" aria-hidden="true">
-            ▶ {current.tc} / 00:10
-          </span>
-        )}
-      </CloneStage>
+      {clip ? (
+        <StageClip key={clip.id} clip={clip} />
+      ) : (
+        <CloneStage product={product} scene={scene} />
+      )}
       <div className="clone-demo__controls">
-        <OptionChips
-          label="Escena"
-          items={CLONE_SCENES}
-          value={playing ? null : sceneId}
-          onChange={(id) => {
-            setSceneId(id);
-            setShot(null);
-          }}
-          swatch={(s) => s.background}
-        />
-        <OptionChips
-          label="Sabor"
-          items={CLONE_FLAVORS}
-          value={flavorId}
-          onChange={setFlavorId}
-          swatch={(f) => f.body}
-        />
-        <button
-          type="button"
-          className="solid-button"
-          aria-pressed={playing}
-          onClick={() => setShot(playing ? null : 0)}
-        >
-          {playing ? "Detener" : "Ver el film"}
-          <span aria-hidden="true">{playing ? "■" : "▶"}</span>
-        </button>
+        {picker}
+        <div className="clone-scenes" role="group" aria-label="Situación">
+          <span className="mono">Situación</span>
+          <div>
+            {product.scenes.map((s) => (
+              <button
+                key={s.id}
+                type="button"
+                className="scene-pick"
+                aria-pressed={s.id === shownId}
+                onClick={() => setShownId(s.id)}
+              >
+                <img src={s.thumb} alt="" loading="lazy" />
+                {s.name}
+              </button>
+            ))}
+          </div>
+        </div>
+        {product.ugc.length > 0 && (
+          <div className="clone-ugc" role="group" aria-label="UGC con el clon">
+            <span className="mono">UGC con el clon</span>
+            <div>
+              {product.ugc.map((c) => (
+                <UgcClip
+                  key={c.id}
+                  clip={c}
+                  active={c.id === shownId}
+                  onSelect={() => setShownId(c.id)}
+                />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
+  );
+}
+
+// Product picker on top of the selected product's demo. Switching product
+// remounts the demo so it starts again from its hero shot.
+export default function CloneDemo() {
+  const [productId, setProductId] = useState(CLONE_PRODUCTS[0].id);
+  const product = CLONE_PRODUCTS.find((p) => p.id === productId);
+
+  return (
+    <ProductDemo
+      key={product.id}
+      product={product}
+      picker={
+        <div className="clone-product">
+          <OptionChips
+            label="Producto"
+            items={CLONE_PRODUCTS}
+            value={productId}
+            onChange={setProductId}
+          />
+          <p className="mono">{product.kind}</p>
+        </div>
+      }
+    />
   );
 }

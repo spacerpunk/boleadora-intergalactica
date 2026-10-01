@@ -58,7 +58,7 @@ export default function Navbar() {
             to={`/#${service.id}`}
             onClick={() => setOpen(false)}
           >
-            {service.label}
+            {service.nav}
           </Link>
         ))}
         <NavLink to="/nosotros">Nosotros</NavLink>
