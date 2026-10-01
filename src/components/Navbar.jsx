@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useMotion } from "./MotionProvider.jsx";
+import { SERVICES } from "../data/services.js";
 export function StudioMark() {
   return (
     <span className="studio-mark" aria-hidden="true">
@@ -31,7 +32,7 @@ export default function Navbar() {
         </span>
       </Link>
       <span className="nav-descriptor mono">
-        ESTUDIO CREATIVO
+        AI ADVERTISING STUDIO
         <br />
         BUENOS AIRES ↗ MUNDO
       </span>
@@ -51,11 +52,16 @@ export default function Navbar() {
           if (e.key === "Escape") setOpen(false);
         }}
       >
-        <Link to="/#servicios" onClick={() => setOpen(false)}>
-          Servicios
-        </Link>
+        {SERVICES.map((service) => (
+          <Link
+            key={service.id}
+            to={`/#${service.id}`}
+            onClick={() => setOpen(false)}
+          >
+            {service.label}
+          </Link>
+        ))}
         <NavLink to="/nosotros">Nosotros</NavLink>
-        <NavLink to="/portfolio">Portfolio</NavLink>
         <Link
           className="nav-contact"
           to="/#contacto"

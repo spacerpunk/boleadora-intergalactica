@@ -27,7 +27,7 @@ export default function Portfolio() {
     setFilter(0);
   }, [id]);
   useEffect(() => {
-    document.title = `${member ? `Trabajos de ${member.nombre}` : "Portfolio"} — Ruido de Mate`;
+    document.title = `${member ? `Trabajos de ${member.nombre}` : "Archivo"} — Ruido de Mate`;
   }, [member]);
   if (id && !member) return <Navigate to="/" replace />;
   const projects = member ? getProjectsByOwner(member.id) : PROJECTS;
@@ -43,8 +43,8 @@ export default function Portfolio() {
       <main id="top" className="portfolio-page">
         <section className="page-heading">
           <div className="section-kicker mono">
-            <span>[ PORTFOLIO ]</span>
-            <span>EL OFICIO, EN ACCIÓN.</span>
+            <span>[ ARCHIVO ]</span>
+            <span>EL OFICIO DE ANTES.</span>
           </div>
           <h1>
             {member ? (
@@ -55,9 +55,9 @@ export default function Portfolio() {
               </>
             ) : (
               <>
-                IDEAS QUE
+                EL OFICIO
                 <br />
-                <em>COBRAN VIDA.</em>
+                <em>DE ANTES.</em>
               </>
             )}
           </h1>
@@ -65,11 +65,15 @@ export default function Portfolio() {
             <p>
               {member
                 ? `Una selección de proyectos de ${member.nombreCompleto}.`
-                : "Una selección de trabajos y colaboraciones de quienes formamos Ruido de Mate. Imagen, sonido, diseño y nuevas formas de producir."}
+                : "Antes de la IA hubo rodajes, islas de edición y salas de mezcla. Este es el archivo de trabajos de quienes formamos Ruido de Mate: la base de todo lo que hacemos hoy."}
             </p>
-            {member && (
+            {member ? (
               <Link className="text-link" to={`/profile/${member.id}`}>
                 Volver al perfil ↗
+              </Link>
+            ) : (
+              <Link className="text-link" to="/#contenido-sintetico">
+                Lo que hacemos hoy ↗
               </Link>
             )}
           </div>

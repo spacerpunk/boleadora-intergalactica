@@ -1,25 +1,30 @@
 @charset "UTF-8";
 :root {
   font-family: "Bricolage Grotesque", Arial, sans-serif;
-  color: #1a1b12;
-  background: #f4f2ec;
+  color: #efe9dd;
+  background: #1c1b19;
   font-synthesis: none;
-  --bg: #f4f2ec;
-  --paper: #1a1b12;
-  /* Acento celeste argentino (se mantiene el nombre --orange en el resto del CSS) */
-  --orange: #2f8fc4;
-  --accent-bright: #7cb6df;
-  --accent-wash: #e7f1f8;
-  --muted: #6f7067;
-  --line: #1a1b1220;
+  /* Carbón y celeste: --bg es el fondo y --paper el color de texto */
+  --bg: #1c1b19;
+  --surface: #252421;
+  --surface-2: #2e2d29;
+  --paper: #efe9dd;
+  --soft: #c2bcb0;
+  /* Acento celeste (se mantiene el nombre --orange en el resto del CSS) */
+  --orange: #74b4dc;
+  --accent-bright: #9dcbe8;
+  --accent-wash: #74b4dc;
+  --muted: #8f897d;
+  --line: #efe9dd1c;
   --gutter: clamp(22px, 4.4vw, 76px);
-  color-scheme: light;
+  color-scheme: dark;
 }
 * {
   box-sizing: border-box;
 }
 body {
   margin: 0;
+  background: var(--bg);
 }
 button,
 input,
@@ -1012,13 +1017,15 @@ html {
 }
 .contact-section {
   padding: 65px var(--gutter) 65px;
-  background: var(--accent-bright);
-  color: #10100f;
-  --paper: #10100f;
-  --bg: #ffffff;
+  background: var(--accent-wash);
+  color: #1c1b19;
+  --paper: #1c1b19;
+  --soft: #1c1b19cc;
+  --muted: #1c1b19a6;
+  --line: #1c1b1233;
 }
 .contact-section .section-kicker > span:last-child {
-  color: #10100fa1;
+  color: var(--muted);
 }
 .contact-headline {
   position: relative;
@@ -1053,13 +1060,14 @@ html {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-top: 1px solid #10100f55;
+  border-top: 1px solid var(--line);
   padding-top: 30px;
   gap: 25px;
 }
 .contact-bottom p {
   font-size: 14px;
   line-height: 1.5;
+  color: var(--soft);
 }
 .solid-button {
   background: var(--paper);
@@ -1080,17 +1088,18 @@ html {
   background: var(--orange);
   transform: translateY(-2px);
 }
+
 .contact-bottom .solid-button {
-  background: var(--bg);
-  color: var(--paper);
+  background: #1c1b19;
+  color: #efe9dd;
 }
 .contact-bottom .solid-button:hover {
-  background: var(--paper);
-  color: var(--bg);
+  background: #efe9dd;
+  color: #1c1b19;
 }
 .contact-bottom .mono {
   font-size: 9px;
-  border-bottom: 1px solid #10100f66;
+  border-bottom: 1px solid var(--line);
   padding-bottom: 5px;
 }
 /* Footer */
@@ -1158,7 +1167,7 @@ html {
   font-size: 20px;
   line-height: 1.55;
   letter-spacing: -0.02em;
-  color: #3a3b33;
+  color: var(--soft);
   max-width: 520px;
 }
 .page-asterisk {
@@ -1206,7 +1215,7 @@ html {
   aspect-ratio: 3/4;
   position: relative;
   overflow: hidden;
-  background: #e7e4db;
+  background: var(--surface);
 }
 .team-card__media > img {
   position: absolute;
@@ -1327,9 +1336,9 @@ html {
   min-height: 42px;
 }
 .portfolio-filters > button[aria-pressed="true"] {
-  background: var(--paper);
+  background: var(--orange);
   color: var(--bg);
-  border-color: var(--paper);
+  border-color: var(--orange);
 }
 .portfolio-filters > .mono {
   margin-left: auto;
@@ -1351,7 +1360,7 @@ html {
   position: relative;
   aspect-ratio: 16/10;
   overflow: hidden;
-  background: #e7e4db;
+  background: var(--surface);
 }
 .project-card__media > img {
   width: 100%;
@@ -1392,7 +1401,7 @@ html {
   height: 100%;
   display: grid;
   place-items: center;
-  background: #e7e4db;
+  background: var(--surface);
   color: var(--muted);
   font-size: 34px;
   letter-spacing: -0.04em;
@@ -1519,14 +1528,14 @@ html {
   max-height: 90svh;
   overflow: auto;
   margin: auto;
-  box-shadow: 0 30px 120px #1a1b1233;
+  box-shadow: 0 30px 120px #00000080;
 }
 .studio-dialog::backdrop {
-  background: #1a1b1266;
+  background: #000000a6;
   backdrop-filter: blur(8px);
 }
 .dialog-surface {
-  background: #ffffff;
+  background: var(--surface);
   position: relative;
 }
 .dialog-close {
@@ -1536,7 +1545,7 @@ html {
   right: 14px;
   margin: 14px 14px -54px 0;
   z-index: 2;
-  background: #ffffffdd;
+  background: var(--surface-2);
   color: var(--paper);
   font-size: 27px;
   border: 1px solid var(--line);
@@ -1584,7 +1593,7 @@ html {
 .brief-field select {
   width: 100%;
   border: 1px solid var(--line);
-  background: #ffffff;
+  background: var(--bg);
   color: var(--paper);
   padding: 13px;
   font-size: 13px;
@@ -1655,7 +1664,7 @@ html {
   margin-bottom: 25px;
 }
 .project-detail > p {
-  color: #3a3b33;
+  color: var(--soft);
   font-size: 15px;
   line-height: 1.7;
   margin-bottom: 15px;
@@ -1717,7 +1726,14 @@ html {
     gap: 20px;
   }
   .nav-links {
-    gap: 23px;
+    gap: 20px;
+  }
+  .nav-links > a {
+    font-size: 11px;
+  }
+  .nav-contact {
+    gap: 16px;
+    padding: 12px 14px;
   }
   .hero-message h1 {
     font-size: 14vw;
@@ -1776,6 +1792,49 @@ html {
     gap: 40px;
   }
 }
+/* The navbar lists the three pillars, so it collapses into a menu earlier */
+@media (max-width: 900px) {
+  .menu-toggle {
+    display: block;
+    margin-left: auto;
+    min-height: 44px;
+  }
+  .nav-links {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    background: #1c1b19f5;
+    padding: 28px var(--gutter);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(15px);
+  }
+  .nav-links.is-open {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  /* Keep the dropdown links readable, even over the hero */
+  .studio-nav .nav-links.is-open > a {
+    color: var(--paper);
+  }
+  .studio-nav .nav-links.is-open .nav-contact {
+    border-color: var(--line);
+  }
+  .nav-links > a {
+    padding: 18px 0;
+    font-size: 13px;
+  }
+  .nav-links .nav-contact {
+    padding: 16px;
+    margin-top: 12px;
+  }
+  .nav-links > a::after {
+    display: none;
+  }
+}
 @media (max-width: 760px) {
   :root {
     --gutter: 24px;
@@ -1793,46 +1852,6 @@ html {
   }
   .studio-mark {
     font-size: 47px;
-  }
-  .menu-toggle {
-    display: block;
-    margin-left: auto;
-    min-height: 44px;
-  }
-  .nav-links {
-    display: none;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 82px;
-    background: #f4f2ecf5;
-    padding: 28px var(--gutter);
-    border-bottom: 1px solid var(--line);
-    backdrop-filter: blur(15px);
-  }
-  .nav-links.is-open {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-  }
-  /* Force dark links inside the light dropdown, even over the hero */
-  .studio-nav .nav-links.is-open > a {
-    color: var(--paper);
-  }
-  .studio-nav .nav-links.is-open .nav-contact {
-    border-color: var(--line);
-  }
-  .nav-links > a {
-    padding: 18px 0;
-    font-size: 13px;
-  }
-  .nav-links .nav-contact {
-    padding: 16px;
-    margin-top: 12px;
-  }
-  .nav-links > a::after {
-    display: none;
   }
   .motion-toggle {
     height: 32px;

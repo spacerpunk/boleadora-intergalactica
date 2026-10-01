@@ -1,13 +1,8 @@
 import { useEffect, useState } from "react";
 import { STUDIO } from "../config.js";
+import { SERVICES } from "../data/services.js";
 import Dialog from "./Dialog.jsx";
-const TYPES = [
-  "Proyecto integral",
-  "Postproducción",
-  "Creatividad",
-  "AI Production Solutions",
-  "Otro",
-];
+const TYPES = ["Proyecto integral", ...SERVICES.map((s) => s.form), "Otro"];
 const EMPTY = {
   nombre: "",
   email: "",
@@ -136,13 +131,13 @@ export default function ContactModal({ open, onClose, initialType }) {
               />
             </label>
             <label className="brief-field">
-              <span>La idea, el desafío, el punto de partida *</span>
+              <span>Tu producto, tu marca o tu idea *</span>
               <textarea
                 required
                 rows={3}
                 value={data.mensaje}
                 onChange={update("mensaje")}
-                placeholder="Contanos un poco…"
+                placeholder="Qué querés comunicar, en qué redes, con qué frecuencia…"
               />
             </label>
             <p className="brief-note">

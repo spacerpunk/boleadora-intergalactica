@@ -41,9 +41,9 @@ export default function ReelHero() {
         <div className="hero-shade" />
         <div className="hero-topline mono">
           <span>
-            <i className="status-dot" /> INDEPENDENT CREATIVE STUDIO
+            <i className="status-dot" /> AI ADVERTISING STUDIO
           </span>
-          <span>IDEAS QUE SE VEN. RUIDO QUE SE SIENTE.</span>
+          <span>PUBLICIDAD CON IA. CRITERIO DE CINE.</span>
         </div>
         <div className="hero-center">
           <button
@@ -61,30 +61,30 @@ export default function ReelHero() {
         </div>
         <div className="hero-message">
           <div className="hero-eyebrow mono">
-            POSTPRODUCCIÓN / CREATIVIDAD / AI SOLUTIONS
+            CONTENIDO SINTÉTICO / FILMS CON IA / UGC CON AGENTES
           </div>
           <h1 id="hero-title">
-            BUENAS IDEAS.
+            OFICIO VIEJO.
             <br />
-            <span>MUCHO RUIDO.</span>
+            <span>MUNDO NUEVO.</span>
           </h1>
           <div className="hero-description">
             <p>
-              Hacemos que tu próxima idea
+              Publicidad hecha con inteligencia artificial
               <br />
-              se vea, se escuche y se sienta.
+              por gente de cine, post y sonido.
             </p>
             <a
               className="hero-down"
-              href="#servicios"
-              aria-label="Explorar nuestros servicios"
+              href="#manifiesto"
+              aria-label="Conocer el estudio"
             >
               ↓
             </a>
           </div>
         </div>
         <div className="hero-bottom mono">
-          <span>RUIDO DE MATE® — BUENOS AIRES, ARG.</span>
+          <span>RUIDO DE MATE® — AI ADVERTISING, BUENOS AIRES</span>
           <span className="hero-edition">SELECTED CUTS / 2026</span>
           <button
             onClick={() => setPaused(!paused)}

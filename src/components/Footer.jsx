@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="studio-footer">
       <div className="footer-top mono">
-        <span>IDEAS, OFICIO Y UNOS CUANTOS MATES.</span>
+        <span>OFICIO DE CINE, HERRAMIENTAS DE IA Y UNOS CUANTOS MATES.</span>
         <a href="#top">VOLVER ARRIBA ↑</a>
       </div>
       <Link
@@ -16,7 +16,7 @@ export default function Footer() {
       </Link>
       <div className="footer-bottom mono">
         <span>© {new Date().getFullYear()} RUIDO DE MATE</span>
-        <span>BUENOS AIRES, ARGENTINA</span>
+        <span>AI ADVERTISING STUDIO · BUENOS AIRES</span>
         <a href={STUDIO.social.instagram} target="_blank" rel="noreferrer">
           INSTAGRAM ↗
         </a>
