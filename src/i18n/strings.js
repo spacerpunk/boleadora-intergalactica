@@ -120,6 +120,11 @@ export const STRINGS = {
   "film.watch": { es: "VER FILM ↗", en: "WATCH FILM ↗" },
   "ugc.model": { es: "Modelo", en: "Creator" },
   "ugc.action": { es: "Acción", en: "Action" },
+  "ugc.sheet": { es: "Character sheet", en: "Character sheet" },
+  "ugc.sheetAlt": {
+    es: "Character sheet de {name}: cuerpo entero en cuatro ángulos y cinco expresiones",
+    en: "{name}'s character sheet: full body from four angles and five expressions",
+  },
   "ugc.paid": {
     es: "Colaboración pagada · Creado con IA",
     en: "Paid partnership · Made with AI",

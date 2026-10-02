@@ -2,23 +2,26 @@
 // for a fictional product, Boleadora Cold Brew. Copy is written as { es, en }
 // and resolved with L(); hooks are one function per language.
 //
-// Media: until real renders exist, each creator shows a styled casting card.
-// To use real content, add a portrait (`portrait`) and/or one clip per action
-// (`clips: { unboxing: "/media/demos/ugc/luli-unboxing.mp4", ... }`).
-// Clips should be 9:16, muted, short and web-compressed.
+// Each creator is a synthetic persona from assets/Personas, converted by
+// scripts/build-personas.py into public/personas/<id>/: `portrait` is the
+// card photo, `sheet` the character sheet shown on hover. Add one clip per
+// action as they are rendered (`clips: { review: persona(id, "clip-review.mp4") }`);
+// until then the phone shows the portrait.
 import { L } from "../i18n/LanguageContext.jsx";
+
+const persona = (id, file) => `/personas/${id}/${file}`;
 
 export const UGC_PRODUCT_TAG = "#BoleadoraColdBrew";
 
 export const UGC_MODELS = [
   {
-    id: "luli",
-    name: "Luli",
-    handle: "@luli.enfoco",
+    id: "camila",
+    name: "Camila",
+    handle: "@cami.enfoco",
     niche: { es: "Lifestyle", en: "Lifestyle" },
-    colors: ["#c99a8a", "#6e3a30"],
+    colors: ["#d9c7b0", "#7a5b45"],
     opener: { es: "Chicas, paren todo", en: "Girls, stop everything" },
-    moment: { es: "antes de la facu", en: "before class" },
+    moment: { es: "antes de arrancar a trabajar", en: "before work" },
     routine: { es: "mañana", en: "morning" },
     replaces: { es: "el tercer café", en: "my third coffee" },
     trend: {
@@ -27,34 +30,16 @@ export const UGC_MODELS = [
     },
     signoff: { es: "Besito y chau", en: "Love you, bye" },
     hashtags: { es: ["#grwm", "#rutina"], en: ["#grwm", "#routine"] },
-    portrait: null,
+    portrait: persona("camila", "profile.webp"),
+    sheet: persona("camila", "sheet.webp"),
     clips: {},
   },
   {
-    id: "tomas",
-    name: "Tomás",
-    handle: "@tomi.corre",
-    niche: { es: "Fitness", en: "Fitness" },
-    colors: ["#9fb69a", "#34523b"],
-    opener: { es: "Arrancamos", en: "Let's go" },
-    moment: { es: "antes de salir a correr", en: "before my run" },
-    routine: { es: "previa de entrenamiento", en: "pre-workout" },
-    replaces: { es: "el energizante", en: "energy drinks" },
-    trend: { es: "5 km antes de las 7", en: "5K before 7 a.m." },
-    signoff: {
-      es: "Nos vemos en el próximo kilómetro",
-      en: "See you at the next kilometre",
-    },
-    hashtags: { es: ["#running", "#fitness"], en: ["#running", "#fitness"] },
-    portrait: null,
-    clips: {},
-  },
-  {
-    id: "marta",
-    name: "Marta",
-    handle: "@lacocinademarta",
+    id: "luciana",
+    name: "Luciana",
+    handle: "@lacocinadelu",
     niche: { es: "Cocina", en: "Cooking" },
-    colors: ["#c8b182", "#6b5226"],
+    colors: ["#9fb7d4", "#3f5f86"],
     opener: { es: "Buen día, familia", en: "Morning, family" },
     moment: { es: "a media tarde", en: "in the afternoon" },
     routine: { es: "merienda", en: "afternoon snack" },
@@ -65,15 +50,16 @@ export const UGC_MODELS = [
     },
     signoff: { es: "Un beso grande", en: "Big hugs" },
     hashtags: { es: ["#recetas", "#merienda"], en: ["#recipes", "#snacktime"] },
-    portrait: null,
+    portrait: persona("luciana", "profile.webp"),
+    sheet: persona("luciana", "sheet.webp"),
     clips: {},
   },
   {
-    id: "kenji",
-    name: "Kenji",
-    handle: "@kenji.setup",
+    id: "mateo",
+    name: "Mateo",
+    handle: "@mateo.setup",
     niche: { es: "Gaming", en: "Gaming" },
-    colors: ["#95a8c9", "#27395e"],
+    colors: ["#b9bcc2", "#4d525b"],
     opener: { es: "Ok, esto hay que analizarlo", en: "Ok, we need to break this down" },
     moment: { es: "en medio de una partida", en: "mid-match" },
     routine: { es: "noche de stream", en: "stream night" },
@@ -81,32 +67,28 @@ export const UGC_MODELS = [
     trend: { es: "Rating de setups", en: "Rating setups" },
     signoff: { es: "GG", en: "GG" },
     hashtags: { es: ["#setup", "#gaming"], en: ["#setup", "#gaming"] },
-    portrait: null,
+    portrait: persona("mateo", "profile.webp"),
+    sheet: persona("mateo", "sheet.webp"),
     clips: {},
   },
   {
-    id: "valen",
-    name: "Valen",
-    handle: "@valen.multitask",
-    niche: { es: "Familia", en: "Family" },
-    colors: ["#b69ab9", "#523057"],
-    opener: { es: "Modo multitarea activado", en: "Multitask mode on" },
-    moment: {
-      es: "entre reuniones y la salida del cole",
-      en: "between meetings and school pickup",
+    id: "santiago",
+    name: "Santiago",
+    handle: "@santi.corre",
+    niche: { es: "Fitness", en: "Fitness" },
+    colors: ["#c9c9c9", "#1f1f22"],
+    opener: { es: "Arrancamos", en: "Let's go" },
+    moment: { es: "antes de salir a correr", en: "before my run" },
+    routine: { es: "previa de entrenamiento", en: "pre-workout" },
+    replaces: { es: "el energizante", en: "energy drinks" },
+    trend: { es: "5 km antes de las 7", en: "5K before 7 a.m." },
+    signoff: {
+      es: "Nos vemos en el próximo kilómetro",
+      en: "See you at the next kilometre",
     },
-    routine: { es: "mañana caótica", en: "chaotic morning" },
-    replaces: { es: "el café recalentado", en: "reheated coffee" },
-    trend: {
-      es: "Un día normal de una mamá que trabaja",
-      en: "A normal day as a working mom",
-    },
-    signoff: { es: "Sobreviviendo, como siempre", en: "Surviving, as always" },
-    hashtags: {
-      es: ["#maternidad", "#organizacion"],
-      en: ["#momlife", "#organization"],
-    },
-    portrait: null,
+    hashtags: { es: ["#running", "#fitness"], en: ["#running", "#fitness"] },
+    portrait: persona("santiago", "profile.webp"),
+    sheet: persona("santiago", "sheet.webp"),
     clips: {},
   },
 ];

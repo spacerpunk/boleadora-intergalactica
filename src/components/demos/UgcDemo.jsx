@@ -30,6 +30,22 @@ function CreatorVisual({ model, clip }) {
   );
 }
 
+// A persona's character sheet: shown beside its card on hover or keyboard
+// focus, and under the cards for the selected persona on touch screens.
+function CharacterSheet({ model, className }) {
+  const { t } = useLanguage();
+  return (
+    <figure className={className}>
+      <img
+        src={model.sheet}
+        alt={t("ugc.sheetAlt", { name: model.name })}
+        loading="lazy"
+      />
+      <figcaption className="mono">{t("ugc.sheet")}</figcaption>
+    </figure>
+  );
+}
+
 export default function UgcDemo() {
   const { motion } = useMotion();
   const { lang, t } = useLanguage();
@@ -64,21 +80,26 @@ export default function UgcDemo() {
           <span className="mono">{t("ugc.model")}</span>
           <div>
             {UGC_MODELS.map((m) => (
-              <button
-                key={m.id}
-                type="button"
-                className="model-pick"
-                aria-pressed={m.id === modelId}
-                onClick={() => setModelId(m.id)}
-              >
-                <CreatorVisual model={m} />
-                <span>
-                  <strong>{m.name}</strong>
-                  <small className="mono">{L(m.niche, lang)}</small>
-                </span>
-              </button>
+              <div key={m.id} className="model-slot">
+                <button
+                  type="button"
+                  className="model-pick"
+                  aria-pressed={m.id === modelId}
+                  onClick={() => setModelId(m.id)}
+                >
+                  <CreatorVisual model={m} />
+                  <span>
+                    <strong>{m.name}</strong>
+                    <small className="mono">{L(m.niche, lang)}</small>
+                  </span>
+                </button>
+                {m.sheet && <CharacterSheet model={m} className="model-sheet" />}
+              </div>
             ))}
           </div>
+          {model.sheet && (
+            <CharacterSheet model={model} className="model-sheet-inline" />
+          )}
         </div>
         <OptionChips
           label={t("ugc.action")}
@@ -101,7 +122,11 @@ export default function UgcDemo() {
               <span key={`${combo}-${rendering}`} />
             </div>
             <div className="ugc-phone__top">
-              <i style={{ background: model.colors[1] }}>{model.name[0]}</i>
+              {model.portrait ? (
+                <img className="ugc-phone__avatar" src={model.portrait} alt="" />
+              ) : (
+                <i style={{ background: model.colors[1] }}>{model.name[0]}</i>
+              )}
               <span>
                 <strong>{model.handle}</strong>
                 <small>{t("ugc.paid")}</small>
